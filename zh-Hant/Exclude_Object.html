@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="hu" class="no-js">
+<html lang="zh-Hant" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -13,7 +13,7 @@
     
     
       
-        <title>Szeletelők - Klipper documentation</title>
+        <title>Exclude Objects - Klipper documentation</title>
       
     
     
@@ -74,8 +74,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#szeletelok" class="md-skip">
-          Kihagyás
+        <a href="#exclude-objects" class="md-skip">
+          跳轉至
         </a>
       
     </div>
@@ -87,7 +87,7 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="Klipper documentation" class="md-header__button md-logo" aria-label="Klipper documentation" data-md-component="logo">
       
   <img src="img/klipper.svg" alt="logo">
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Szeletelők
+              Exclude Objects
             
           </span>
         </div>
@@ -182,7 +182,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -193,7 +193,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
         </button>
       </nav>
@@ -205,7 +205,7 @@
       <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Keresés inicializálása
+            正在初始化搜尋引擎
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -216,7 +216,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/Klipper3d/klipper/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+        <a href="https://github.com/Klipper3d/klipper/" title="前往倉庫" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
@@ -249,7 +249,7 @@
                     
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigáció" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="." title="Klipper documentation" class="md-nav__button md-logo" aria-label="Klipper documentation" data-md-component="logo">
       
@@ -260,7 +260,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/Klipper3d/klipper/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+      <a href="https://github.com/Klipper3d/klipper/" title="前往倉庫" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
@@ -282,7 +282,7 @@
   
     <li class="md-nav__item">
       <a href="Overview.html" class="md-nav__link">
-        Áttekintés
+        概述
       </a>
     </li>
   
@@ -297,7 +297,7 @@
   
     <li class="md-nav__item">
       <a href="Features.html" class="md-nav__link">
-        Funkciók
+        功能
       </a>
     </li>
   
@@ -312,7 +312,7 @@
   
     <li class="md-nav__item">
       <a href="FAQ.html" class="md-nav__link">
-        Gyakran ismételt kérdések
+        常見問題
       </a>
     </li>
   
@@ -327,7 +327,7 @@
   
     <li class="md-nav__item">
       <a href="Releases.html" class="md-nav__link">
-        Kiadás
+        版本發佈
       </a>
     </li>
   
@@ -342,7 +342,7 @@
   
     <li class="md-nav__item">
       <a href="Config_Changes.html" class="md-nav__link">
-        Konfigurációs változások
+        配置變更
       </a>
     </li>
   
@@ -357,7 +357,7 @@
   
     <li class="md-nav__item">
       <a href="Contact.html" class="md-nav__link">
-        Kapcsolat
+        聯繫方式
       </a>
     </li>
   
@@ -369,14 +369,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
       
       
       
@@ -400,7 +398,7 @@
   
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
-        Telepítés
+        安裝
       </a>
     </li>
   
@@ -440,7 +438,7 @@
   
     <li class="md-nav__item">
       <a href="Config_Reference.html" class="md-nav__link">
-        Konfigurációs hivatkozás
+        配置參考
       </a>
     </li>
   
@@ -454,7 +452,7 @@
   
     <li class="md-nav__item">
       <a href="Rotation_Distance.html" class="md-nav__link">
-        Forgatási távolság
+        旋轉距離
       </a>
     </li>
   
@@ -475,7 +473,7 @@
   
     <li class="md-nav__item">
       <a href="Config_checks.html" class="md-nav__link">
-        Konfigurációs ellenőrzések
+        配置檢查
       </a>
     </li>
   
@@ -515,7 +513,7 @@
   
     <li class="md-nav__item">
       <a href="Bed_Level.html" class="md-nav__link">
-        Ágy szintezése
+        列印床調平
       </a>
     </li>
   
@@ -529,7 +527,7 @@
   
     <li class="md-nav__item">
       <a href="Delta_Calibrate.html" class="md-nav__link">
-        Delta kalibrálás
+        三角校正
       </a>
     </li>
   
@@ -543,7 +541,7 @@
   
     <li class="md-nav__item">
       <a href="Probe_Calibrate.html" class="md-nav__link">
-        Szonda kalibrálása
+        探針校準
       </a>
     </li>
   
@@ -571,7 +569,7 @@
   
     <li class="md-nav__item">
       <a href="Manual_Level.html" class="md-nav__link">
-        Kézi szintezés
+        手動調平
       </a>
     </li>
   
@@ -585,7 +583,7 @@
   
     <li class="md-nav__item">
       <a href="Bed_Mesh.html" class="md-nav__link">
-        Ágyháló
+        床網
       </a>
     </li>
   
@@ -599,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
-        Végállás szakasz
+        限位相位
       </a>
     </li>
   
@@ -646,7 +644,7 @@
   
     <li class="md-nav__item">
       <a href="Resonance_Compensation.html" class="md-nav__link">
-        Rezonancia Kompenzáció
+        共振補償
       </a>
     </li>
   
@@ -660,7 +658,7 @@
   
     <li class="md-nav__item">
       <a href="Measuring_Resonances.html" class="md-nav__link">
-        Rezonanciák mérése
+        共振值測量
       </a>
     </li>
   
@@ -681,7 +679,7 @@
   
     <li class="md-nav__item">
       <a href="Pressure_Advance.html" class="md-nav__link">
-        Nyomás előtolás
+        Pressure advance
       </a>
     </li>
   
@@ -695,7 +693,7 @@
   
     <li class="md-nav__item">
       <a href="G-Codes.html" class="md-nav__link">
-        G-kódok
+        G-Codes
       </a>
     </li>
   
@@ -735,7 +733,7 @@
   
     <li class="md-nav__item">
       <a href="Command_Templates.html" class="md-nav__link">
-        Parancssablonok
+        命令模板
       </a>
     </li>
   
@@ -749,7 +747,7 @@
   
     <li class="md-nav__item">
       <a href="Status_Reference.html" class="md-nav__link">
-        Állapot referencia
+        狀態參考
       </a>
     </li>
   
@@ -770,7 +768,7 @@
   
     <li class="md-nav__item">
       <a href="TMC_Drivers.html" class="md-nav__link">
-        TMC meghajtók
+        TMC 驅動器
       </a>
     </li>
   
@@ -784,7 +782,7 @@
   
     <li class="md-nav__item">
       <a href="Multi_MCU_Homing.html" class="md-nav__link">
-        Több mikrovezélős kezdőpont és szondázás
+        複數微控制器歸零與探高
       </a>
     </li>
   
@@ -795,94 +793,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Szeletelők
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="Slicers.html" class="md-nav__link md-nav__link--active">
-        Szeletelők
+    <li class="md-nav__item">
+      <a href="Slicers.html" class="md-nav__link">
+        切片軟體
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tartalomjegyzék
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#allitsa-be-a-g-kod-izet-marlinra" class="md-nav__link">
-    Állítsa be a G-kód ízét Marlinra
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#klipper-gcode_macro" class="md-nav__link">
-    Klipper gcode_macro
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#nagy-visszahuzasi-ertekek-beallitasa-szuksegesse-tehetik-a-klipper-hangolasat" class="md-nav__link">
-    Nagy visszahúzási értékek beállítása szükségessé tehetik a Klipper hangolását
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ne-engedelyezze-a-coasting-ot" class="md-nav__link">
-    Ne engedélyezze a "coasting-ot"
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ne-hasznalja-az-extra-ujrainditasi-tavolsagot-a-simplify3d-nel" class="md-nav__link">
-    Ne használja az "extra újraindítási távolságot" a Simplify3d-nél
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#a-preloadve-letiltasa-a-kisslicer-en" class="md-nav__link">
-    A "PreloadVE" letiltása a KISSlicer-en
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tiltja-a-fejlett-nyomas-elotolas-beallitasokat" class="md-nav__link">
-    Tiltja a "fejlett nyomás előtolás" beállításokat
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -895,7 +810,7 @@
   
     <li class="md-nav__item">
       <a href="Skew_Correction.html" class="md-nav__link">
-        Ferdeség korrekció
+        偏斜校正
       </a>
     </li>
   
@@ -909,7 +824,7 @@
   
     <li class="md-nav__item">
       <a href="Using_PWM_Tools.html" class="md-nav__link">
-        PWM eszközök használata
+        使用 PWM 工具
       </a>
     </li>
   
@@ -957,7 +872,7 @@
   
     <li class="md-nav__item">
       <a href="Code_Overview.html" class="md-nav__link">
-        Kód áttekintése
+        程式碼總覽
       </a>
     </li>
   
@@ -971,7 +886,7 @@
   
     <li class="md-nav__item">
       <a href="Kinematics.html" class="md-nav__link">
-        Kinematika
+        運動學
       </a>
     </li>
   
@@ -985,7 +900,7 @@
   
     <li class="md-nav__item">
       <a href="Protocol.html" class="md-nav__link">
-        Protokoll
+        協議
       </a>
     </li>
   
@@ -999,7 +914,7 @@
   
     <li class="md-nav__item">
       <a href="API_Server.html" class="md-nav__link">
-        API szerver
+        API 伺服器
       </a>
     </li>
   
@@ -1013,7 +928,7 @@
   
     <li class="md-nav__item">
       <a href="MCU_Commands.html" class="md-nav__link">
-        MCU parancsok
+        MCU命令
       </a>
     </li>
   
@@ -1027,7 +942,7 @@
   
     <li class="md-nav__item">
       <a href="CANBUS_protocol.html" class="md-nav__link">
-        CANBUS protokoll
+        CANBUS 協議
       </a>
     </li>
   
@@ -1041,7 +956,7 @@
   
     <li class="md-nav__item">
       <a href="Debugging.html" class="md-nav__link">
-        Hibakeresés
+        除錯
       </a>
     </li>
   
@@ -1055,7 +970,7 @@
   
     <li class="md-nav__item">
       <a href="Benchmarks.html" class="md-nav__link">
-        Referenciaértékek
+        基準測試
       </a>
     </li>
   
@@ -1069,7 +984,7 @@
   
     <li class="md-nav__item">
       <a href="CONTRIBUTING.html" class="md-nav__link">
-        Hozzájárulás a Klipperhez
+        為 Klipper 做貢獻
       </a>
     </li>
   
@@ -1083,7 +998,7 @@
   
     <li class="md-nav__item">
       <a href="Packaging.html" class="md-nav__link">
-        Klipper csomagolás
+        打包 Klipper
       </a>
     </li>
   
@@ -1131,7 +1046,7 @@
   
     <li class="md-nav__item">
       <a href="Example_Configs.html" class="md-nav__link">
-        Példa konfigurációk
+        配置示例
       </a>
     </li>
   
@@ -1145,7 +1060,7 @@
   
     <li class="md-nav__item">
       <a href="SDCard_Updates.html" class="md-nav__link">
-        SD-kártya frissítések
+        通過SD卡更新
       </a>
     </li>
   
@@ -1159,7 +1074,7 @@
   
     <li class="md-nav__item">
       <a href="RPi_microcontroller.html" class="md-nav__link">
-        RPi mikrokontroller
+        RPi 微控制器
       </a>
     </li>
   
@@ -1187,7 +1102,7 @@
   
     <li class="md-nav__item">
       <a href="Bootloaders.html" class="md-nav__link">
-        Bootloaderek
+        底層載入程式
       </a>
     </li>
   
@@ -1201,7 +1116,7 @@
   
     <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
-        CANBUS
+        CAN 匯流排
       </a>
     </li>
   
@@ -1215,7 +1130,7 @@
   
     <li class="md-nav__item">
       <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
-        TSL1401CL nyomtatószál szélesség érzékelő
+        TSL1401CL 耗材寬度感測器
       </a>
     </li>
   
@@ -1229,7 +1144,7 @@
   
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
-        Hall nyomtatószál szélesség érzékelő
+        霍爾耗材線徑感測器
       </a>
     </li>
   
@@ -1255,7 +1170,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
   
   
   
@@ -1264,55 +1179,40 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Tartalomjegyzék
+      目錄
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#allitsa-be-a-g-kod-izet-marlinra" class="md-nav__link">
-    Állítsa be a G-kód ízét Marlinra
+  <a href="#workflow-overview" class="md-nav__link">
+    Workflow Overview
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#klipper-gcode_macro" class="md-nav__link">
-    Klipper gcode_macro
+  <a href="#the-gcode-file" class="md-nav__link">
+    The GCode File
   </a>
+  
+    <nav class="md-nav" aria-label="The GCode File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object-definitions" class="md-nav__link">
+    Object Definitions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#nagy-visszahuzasi-ertekek-beallitasa-szuksegesse-tehetik-a-klipper-hangolasat" class="md-nav__link">
-    Nagy visszahúzási értékek beállítása szükségessé tehetik a Klipper hangolását
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ne-engedelyezze-a-coasting-ot" class="md-nav__link">
-    Ne engedélyezze a "coasting-ot"
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ne-hasznalja-az-extra-ujrainditasi-tavolsagot-a-simplify3d-nel" class="md-nav__link">
-    Ne használja az "extra újraindítási távolságot" a Simplify3d-nél
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#a-preloadve-letiltasa-a-kisslicer-en" class="md-nav__link">
-    A "PreloadVE" letiltása a KISSlicer-en
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tiltja-a-fejlett-nyomas-elotolas-beallitasokat" class="md-nav__link">
-    Tiltja a "fejlett nyomás előtolás" beállításokat
+  <a href="#status-information" class="md-nav__link">
+    Status Information
   </a>
   
 </li>
@@ -1329,34 +1229,48 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/Klipper3d/klipper/blob/master/docs/Slicers.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+<a href="https://github.com/Klipper3d/klipper/blob/master/docs/Exclude_Object.md" title="編輯此頁" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="szeletelok">Szeletelők<a class="headerlink" href="#szeletelok" title="Permanent link">&para;</a></h1>
-<p>Ez a dokumentum néhány tippet ad a Klipperrel használható "szeletelő" alkalmazás konfigurálásához. A Klipperrel együtt használt gyakori szeletelőprogramok a Slic3r, Cura, Simplify3D stb.</p>
-<h2 id="allitsa-be-a-g-kod-izet-marlinra">Állítsa be a G-kód ízét Marlinra<a class="headerlink" href="#allitsa-be-a-g-kod-izet-marlinra" title="Permanent link">&para;</a></h2>
-<p>Sok szeletelőprogram rendelkezik a "G-kód ízének" konfigurálási lehetőséggel. Az alapértelmezett gyakran a "Marlin", és ez jól működik a Klipperrel. A "Smoothieware" beállítás szintén jól működik a Klipperrel.</p>
-<h2 id="klipper-gcode_macro">Klipper gcode_macro<a class="headerlink" href="#klipper-gcode_macro" title="Permanent link">&para;</a></h2>
-<p>A szeletelők gyakran lehetővé teszik a "Start G-kód" és "End G-kód" szekvenciák konfigurálását. Ehelyett gyakran kényelmes egyéni makrókat definiálni a Klipper config fájlban - például: <code>[gcode_macro START_PRINT]</code> és <code>[gcode_macro END_PRINT]</code>. Ezután csak a START_PRINT és END_PRINT futtatását kell elvégezni a szeletelő konfigurációjában. Ha ezeket a műveleteket a Klipper konfigurációban definiáljuk, könnyebbé válhat a nyomtató indítási és befejezési lépéseinek finomhangolása, mivel a változtatások nem igényelnek újbóli szeletelést.</p>
-<p>Lásd a <a href="https://github.com/Klipper3d/klipper/blob/master/config/sample-macros.cfg">sample-macros.cfg</a> a START_PRINT és END_PRINT makrók példáját.</p>
-<p>A gcode_macro definiálásának részleteiért lásd a <a href="Config_Reference.html#gcode_macro">config reference</a>.</p>
-<h2 id="nagy-visszahuzasi-ertekek-beallitasa-szuksegesse-tehetik-a-klipper-hangolasat">Nagy visszahúzási értékek beállítása szükségessé tehetik a Klipper hangolását<a class="headerlink" href="#nagy-visszahuzasi-ertekek-beallitasa-szuksegesse-tehetik-a-klipper-hangolasat" title="Permanent link">&para;</a></h2>
-<p>A behúzási mozgások maximális sebességét és gyorsulását a Klipperben a <code>max_extrude_only_velocity</code> és <code>max_extrude_only_accel</code> konfigurációs beállítások szabályozzák. Ezeknek a beállításoknak van egy alapértelmezett értéke, amely sok nyomtatónál jól fog működni. Ha azonban valaki nagy behúzást állított be a szeletelőben (pl. 5 mm vagy nagyobb), akkor előfordulhat, hogy ezek korlátozzák a kívánt behúzási sebességet.</p>
-<p>Ha nagy visszahúzást használ, fontolja meg a Klipper <a href="Pressure_Advance.html">nyomás előtolás</a> beállítását. Ellenkező esetben, ha úgy találjuk, hogy a szerszámfej úgy tűnik, hogy "szünetel" a behúzás és az alapozás során, akkor fontolja meg a <code>max_extrude_only_velocity</code> és <code>max_extrude_only_accel</code> kifejezett meghatározását a Klipper konfigurációs fájlban.</p>
-<h2 id="ne-engedelyezze-a-coasting-ot">Ne engedélyezze a "coasting-ot"<a class="headerlink" href="#ne-engedelyezze-a-coasting-ot" title="Permanent link">&para;</a></h2>
-<p>A "coasting" funkció valószínűleg rossz minőségű nyomatokat eredményez a Klipperrel. Fontolja meg helyette a Klipper <a href="Pressure_Advance.html">pressure advance</a> használatát.</p>
-<p>Konkrétan, ha a szeletelő drasztikusan megváltoztatja az extrudálási sebességet a mozgások között, akkor a Klipper lassítást és gyorsítást hajt végre a mozgások között. Ez valószínűleg rontja a blobbingot, nem pedig javítja.</p>
-<p>Ezzel szemben a szeletelőgép "visszahúzás" beállítása, "törlés" beállítása és/vagy "törlés visszahúzáskor" beállítása rendben van (és gyakran hasznos).</p>
-<h2 id="ne-hasznalja-az-extra-ujrainditasi-tavolsagot-a-simplify3d-nel">Ne használja az "extra újraindítási távolságot" a Simplify3d-nél<a class="headerlink" href="#ne-hasznalja-az-extra-ujrainditasi-tavolsagot-a-simplify3d-nel" title="Permanent link">&para;</a></h2>
-<p>Ez a beállítás drámai változásokat okozhat az extrudálási sebességben, ami kiválthatja a Klipper maximális extrudálási keresztmetszet ellenőrzését. Fontolja meg a Klipper <a href="Pressure_Advance.html">nyomás előtolás</a> vagy a normál Simplify3d visszahúzási beállítás használatát helyette.</p>
-<h2 id="a-preloadve-letiltasa-a-kisslicer-en">A "PreloadVE" letiltása a KISSlicer-en<a class="headerlink" href="#a-preloadve-letiltasa-a-kisslicer-en" title="Permanent link">&para;</a></h2>
-<p>Ha a KISSlicer szeletelőszoftvert használja, akkor állítsa a "PreloadVE" értéket nullára. Fontolja meg helyette a Klipper <a href="Pressure_Advance.html">nyomás előtolás</a> használatát.</p>
-<h2 id="tiltja-a-fejlett-nyomas-elotolas-beallitasokat">Tiltja a "fejlett nyomás előtolás" beállításokat<a class="headerlink" href="#tiltja-a-fejlett-nyomas-elotolas-beallitasokat" title="Permanent link">&para;</a></h2>
-<p>Néhány szeletelőgép "fejlett nyomás előtolás" képességet hirdet. A Klipper használata esetén ajánlott ezeket az opciókat kikapcsolva tartani, mivel valószínűleg rossz minőségű nyomatokat eredményeznek. Fontolja meg ehelyett a Klipper <a href="Pressure_Advance.html">nyomás előtolás</a> használatát.</p>
-<p>Konkrétan ezek a szeletelő beállítások utasíthatják a firmware-t, hogy vad változtatásokat végezzen az extrudálási sebességben, abban a reményben, hogy a firmware közelíteni fogja ezeket a kéréseket, és a nyomtató nagyjából a kívánt extrudernyomást fogja elérni. A Klipper azonban pontos kinematikai számításokat és időzítést használ. Amikor a Klipper parancsot kap az extrudálási sebesség jelentős változtatására, megtervezi a sebesség, a gyorsulás és az extruder mozgásának megfelelő változásait - ami nem a szeletelő szándékában áll. A szeletelő akár túlzott extrudálási sebességet is parancsolhat, olyannyira, hogy az kiváltja a Klipper maximális extrudálási keresztmetszet ellenőrzését.</p>
-<p>Ezzel szemben a szeletelőgép "visszahúzás" beállítása, "törlés" beállítása és/vagy "törlés visszahúzáskor" beállítása rendben van (és gyakran hasznos).</p>
+<h1 id="exclude-objects">Exclude Objects<a class="headerlink" href="#exclude-objects" title="Permanent link">&para;</a></h1>
+<p>The <code>[exclude_object]</code> module allows Klipper to exclude objects while a print is in progress. To enable this feature include an <a href="Config_Reference.html#exclude_object">exclude_object config
+section</a> (also see the <a href="G-Codes.html#exclude-object">command
+reference</a> and <a href="https://github.com/Klipper3d/klipper/blob/master/config/sample-macros.cfg">sample-macros.cfg</a> file for a Marlin/RepRapFirmware compatible M486 G-Code macro.)</p>
+<p>Unlike other 3D printer firmware options, a printer running Klipper utilizes a suite of components and users have many options to choose from. Therefore, in order to provide a a consistent user experience, the <code>[exclude_object]</code> module will establish a contract or API of sorts. The contract covers the contents of the gcode file, how the internal state of the module is controlled, and how that state is provided to clients.</p>
+<h2 id="workflow-overview">Workflow Overview<a class="headerlink" href="#workflow-overview" title="Permanent link">&para;</a></h2>
+<p>A typical workflow for printing a file might look like this:</p>
+<ol>
+<li>Slicing is completed and the file is uploaded for printing. During the upload, the file is processed and <code>[exclude_object]</code> markers are added to the file. Alternately, slicers may be configured to prepare object exclusion markers natively, or in it's own pre-processing step.</li>
+<li>When printing starts, Klipper will reset the <code>[exclude_object]</code> <a href="Status_Reference.html#exclude_object">status</a>.</li>
+<li>When Klipper processes the <code>EXCLUDE_OBJECT_DEFINE</code> block, it will update the status with the known objects and pass it on to clients.</li>
+<li>The client may use that information to present a UI to the user so that progress can be tracked. Klipper will update the status to include the currently printing object which the client can use for display purposes.</li>
+<li>If the user requests that an object be cancelled, the client will issue an <code>EXCLUDE_OBJECT NAME=&lt;name&gt;</code> command to Klipper.</li>
+<li>When Klipper process the command, it will add the object to the list of excluded objects and update the status for the client.</li>
+<li>The client will receive the updated status from Klipper and can use that information to reflect the object's status in the UI.</li>
+<li>When printing finishes, the <code>[exclude_object]</code> status will continue to be available until another action resets it.</li>
+</ol>
+<h2 id="the-gcode-file">The GCode File<a class="headerlink" href="#the-gcode-file" title="Permanent link">&para;</a></h2>
+<p>The specialized gcode processing needed to support excluding objects does not fit into Klipper's core design goals. Therefore, this module requires that the file is processed before being sent to Klipper for printing. Using a post-process script in the slicer or having middleware process the file on upload are two possibilities for preparing the file for Klipper. A reference post-processing script is available both as an executable and a python library, see <a href="https://github.com/kageurufu/cancelobject-preprocessor">cancelobject-preprocessor</a>.</p>
+<h3 id="object-definitions">Object Definitions<a class="headerlink" href="#object-definitions" title="Permanent link">&para;</a></h3>
+<p>The <code>EXCLUDE_OBJECT_DEFINE</code> command is used to provide a summary of each object in the gcode file to be printed. Provides a summary of an object in the file. Objects don't need to be defined in order to be referenced by other commands. The primary purpose of this command is to provide information to the UI without needing to parse the entire gcode file.</p>
+<p>Object definitions are named, to allow users to easily select an object to be excluded, and additional metadata may be provided to allow for graphical cancellation displays. Currently defined metadata includes a <code>CENTER</code> X,Y coordinate, and a <code>POLYGON</code> list of X,Y points representing a minimal outline of the object. This could be a simple bounding box, or a complicated hull for showing more detailed visualizations of the printed objects. Especially when gcode files include multiple parts with overlapping bounding regions, center points become hard to visually distinguish. <code>POLYGONS</code> must be a json-compatible array of point <code>[X,Y]</code> tuples without whitespace. Additional parameters will be saved as strings in the object definition and provided in status updates.</p>
+<p><code>EXCLUDE_OBJECT_DEFINE NAME=calibration_pyramid CENTER=50,50 POLYGON=[[40,40],[50,60],[60,40]]</code></p>
+<p>All available G-Code commands are documented in the <a href="G-Codes.html#excludeobject">G-Code
+Reference</a></p>
+<h2 id="status-information">Status Information<a class="headerlink" href="#status-information" title="Permanent link">&para;</a></h2>
+<p>The state of this module is provided to clients by the <a href="Status_Reference.html#exclude_object">exclude_object
+status</a>.</p>
+<p>The status is reset when:</p>
+<ul>
+<li>The Klipper firmware is restarted.</li>
+<li>There is a reset of the <code>[virtual_sdcard]</code>. Notably, this is reset by Klipper at the start of a print.</li>
+<li>When an <code>EXCLUDE_OBJECT_DEFINE RESET=1</code> command is issued.</li>
+</ul>
+<p>The list of defined objects is represented in the <code>exclude_object.objects</code> status field. In a well defined gcode file, this will be done with <code>EXCLUDE_OBJECT_DEFINE</code> commands at the beginning of the file. This will provide clients with object names and coordinates so the UI can provide a graphical representation of the objects if desired.</p>
+<p>As the print progresses, the <code>exclude_object.current_object</code> status field will be updated as Klipper processes <code>EXCLUDE_OBJECT_START</code> and <code>EXCLUDE_OBJECT_END</code> commands. The <code>current_object</code> field will be set even if the object has been excluded. Undefined objects marked with a <code>EXCLUDE_OBJECT_START</code> will be added to the known objects to assist in UI hinting, without any additional metadata.</p>
+<p>As <code>EXCLUDE_OBJECT</code> commands are issued, the list of excluded objects is provided in the <code>exclude_object.excluded_objects</code> array. Since Klipper looks ahead to process upcoming gcode, there may be a delay between when the command is issued and when the status is updated.</p>
 
               
             </article>
@@ -1371,41 +1285,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Élőláb">
-      
-        
-        <a href="Multi_MCU_Homing.html" class="md-footer__link md-footer__link--prev" aria-label="Előző: Több mikrovezélős kezdőpont és szondázás" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Előző
-              </span>
-              Több mikrovezélős kezdőpont és szondázás
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="Skew_Correction.html" class="md-footer__link md-footer__link--next" aria-label="Következő: Ferdeség korrekció" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Következő
-              </span>
-              Ferdeség korrekció
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1427,7 +1306,7 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top", "search.suggest", "search.highlight", "search.share"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top", "search.suggest", "search.highlight", "search.share"], "translations": {"clipboard.copy": "\u62f7\u8c9d", "clipboard.copied": "\u5df2\u62f7\u8c9d", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u5c0b", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "# \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
     
     
       <script src="assets/javascripts/bundle.e1a181d9.min.js"></script>
