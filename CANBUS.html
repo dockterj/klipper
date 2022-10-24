@@ -169,6 +169,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/it/" hreflang="it" class="md-select__link">
+                    Italiano
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -823,6 +829,20 @@
   
   
     <li class="md-nav__item">
+      <a href="Exclude_Object.html" class="md-nav__link">
+        Exclude Objects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="Using_PWM_Tools.html" class="md-nav__link">
         Using PWM tools
       </a>
@@ -1185,6 +1205,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#usb-to-can-bus-bridge-mode" class="md-nav__link">
+    USB to CAN bus bridge mode
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1224,6 +1251,21 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Sponsors.html" class="md-nav__link">
+        Sponsors
+      </a>
     </li>
   
 
@@ -1289,6 +1331,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#usb-to-can-bus-bridge-mode" class="md-nav__link">
+    USB to CAN bus bridge mode
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1309,9 +1358,9 @@
 <h1 id="canbus">CANBUS<a class="headerlink" href="#canbus" title="Permanent link">&para;</a></h1>
 <p>This document describes Klipper's CAN bus support.</p>
 <h2 id="device-hardware">Device Hardware<a class="headerlink" href="#device-hardware" title="Permanent link">&para;</a></h2>
-<p>Klipper currently only supports CAN on stm32 chips. In addition, the
-micro-controller chip must support CAN and it must be on a board that
-has a CAN transceiver.</p>
+<p>Klipper currently supports CAN on stm32, same5x, and rp2040 chips. In
+addition, the micro-controller chip must be on a board that has a CAN
+transceiver.</p>
 <p>To compile for CAN, run <code>make menuconfig</code> and select "CAN bus" as the
 communication interface. Finally, compile the micro-controller code
 and flash it to the target board.</p>
@@ -1369,7 +1418,7 @@ powered and wired correctly, and then run:</p>
 
 <p>If uninitialized CAN devices are detected the above command will
 report lines like the following:</p>
-<div class="highlight"><pre><span></span><code>Found canbus_uuid=11aa22bb33cc
+<div class="highlight"><pre><span></span><code>Found canbus_uuid=11aa22bb33cc, Application: Klipper
 </code></pre></div>
 
 <p>Each device will have a unique identifier. In the above example,
@@ -1382,6 +1431,42 @@ will no longer appear in the list.</p>
 the CAN bus to communicate with the device - for example:</p>
 <div class="highlight"><pre><span></span><code>[mcu my_can_mcu]
 canbus_uuid: 11aa22bb33cc
+</code></pre></div>
+
+<h2 id="usb-to-can-bus-bridge-mode">USB to CAN bus bridge mode<a class="headerlink" href="#usb-to-can-bus-bridge-mode" title="Permanent link">&para;</a></h2>
+<p>Some micro-controllers support selecting "USB to CAN bus bridge" mode
+during "make menuconfig". This mode may allow one to use a
+micro-controller as both a "USB to CAN bus adapter" and as a Klipper
+node.</p>
+<p>When Klipper uses this mode the micro-controller appears as a "USB CAN
+bus adapter" under Linux. The "Klipper bridge mcu" itself will appear
+as if was on this CAN bus - it can be identified via <code>canbus_query.py</code>
+and configured like other CAN bus Klipper nodes. It will appear
+alongside other devices that are actually on the CAN bus.</p>
+<p>Some important notes when using this mode:</p>
+<ul>
+<li>The "bridge mcu" is not actually on the CAN bus. Messages to and
+  from it do not consume bandwidth on the CAN bus. The mcu can not be
+  seen by other adapters that may be on the CAN bus.</li>
+</ul>
+<ul>
+<li>It is necessary to configure the <code>can0</code> (or similar) interface in
+  Linux in order to communicate with the bus. However, Linux CAN bus
+  speed and CAN bus bit-timing options are ignored by Klipper.
+  Currently, the CAN bus frequency is specified during "make
+  menuconfig" and the bus speed specified in Linux is ignored.</li>
+</ul>
+<ul>
+<li>Whenever the "bridge mcu" is reset, Linux will disable the
+  corresponding <code>can0</code> interface. To ensure proper handling of
+  FIRMWARE_RESTART and RESTART commands, it is recommended to replace
+  <code>auto</code> with <code>allow-hotplug</code> in the <code>/etc/network/interfaces.d/can0</code>
+  file. For example:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>allow-hotplug can0
+iface can0 can static
+    bitrate 500000
+    up ifconfig $IFACE txqueuelen 128
 </code></pre></div>
 
               

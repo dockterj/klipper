@@ -169,6 +169,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/it/" hreflang="it" class="md-select__link">
+                    Italiano
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -798,6 +804,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bed_screws" class="md-nav__link">
+    bed_screws
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configfile" class="md-nav__link">
     configfile
   </a>
@@ -814,6 +827,20 @@
         <li class="md-nav__item">
   <a href="#endstop_phase" class="md-nav__link">
     endstop_phase
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exclude_object" class="md-nav__link">
+    exclude_object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extruder_stepper" class="md-nav__link">
+    extruder_stepper
   </a>
   
 </li>
@@ -891,6 +918,13 @@
         <li class="md-nav__item">
   <a href="#led" class="md-nav__link">
     led
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual_probe" class="md-nav__link">
+    manual_probe
   </a>
   
 </li>
@@ -1029,6 +1063,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#z_thermal_adjust" class="md-nav__link">
+    z_thermal_adjust
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#z_tilt" class="md-nav__link">
     z_tilt
   </a>
@@ -1101,6 +1142,20 @@
     <li class="md-nav__item">
       <a href="Skew_Correction.html" class="md-nav__link">
         Skew correction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Exclude_Object.html" class="md-nav__link">
+        Exclude Objects
       </a>
     </li>
   
@@ -1447,6 +1502,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Sponsors.html" class="md-nav__link">
+        Sponsors
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1488,6 +1558,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bed_screws" class="md-nav__link">
+    bed_screws
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configfile" class="md-nav__link">
     configfile
   </a>
@@ -1504,6 +1581,20 @@
         <li class="md-nav__item">
   <a href="#endstop_phase" class="md-nav__link">
     endstop_phase
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exclude_object" class="md-nav__link">
+    exclude_object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extruder_stepper" class="md-nav__link">
+    extruder_stepper
   </a>
   
 </li>
@@ -1581,6 +1672,13 @@
         <li class="md-nav__item">
   <a href="#led" class="md-nav__link">
     led
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual_probe" class="md-nav__link">
+    manual_probe
   </a>
   
 </li>
@@ -1719,6 +1817,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#z_thermal_adjust" class="md-nav__link">
+    z_thermal_adjust
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#z_tilt" class="md-nav__link">
     z_tilt
   </a>
@@ -1769,6 +1874,17 @@ Klipper software.</p>
 <li><code>profiles</code>: The set of currently defined profiles as setup
    using BED_MESH_PROFILE.</li>
 </ul>
+<h2 id="bed_screws">bed_screws<a class="headerlink" href="#bed_screws" title="Permanent link">&para;</a></h2>
+<p>The following information is available in the
+<code>Config_Reference.md#bed_screws</code> object:</p>
+<ul>
+<li><code>is_active</code>: Returns True if the bed screws adjustment tool is currently
+active.</li>
+<li><code>state</code>: The bed screws adjustment tool state. It is one of
+the following strings: "adjust", "fine".</li>
+<li><code>current_screw</code>: The index for the current screw being adjusted.</li>
+<li><code>accepted_screws</code>: The number of accepted screws.</li>
+</ul>
 <h2 id="configfile">configfile<a class="headerlink" href="#configfile" title="Permanent link">&para;</a></h2>
 <p>The following information is available in the <code>configfile</code> object
 (this object is always available):</p>
@@ -1782,6 +1898,8 @@ Klipper software.</p>
   here.) All values are returned as strings.</li>
 <li><code>save_config_pending</code>: Returns true if there are updates that a
   <code>SAVE_CONFIG</code> command may persist to disk.</li>
+<li><code>save_config_pending_items</code>: Contains the sections and options that
+  were changed and would be persisted by a <code>SAVE_CONFIG</code>.</li>
 <li><code>warnings</code>: A list of warnings about config options. Each entry in
   the list will be a dictionary containing a <code>type</code> and <code>message</code>
   field (both strings). Additional fields may be available depending
@@ -1809,6 +1927,53 @@ Klipper software.</p>
   home attempt. The position is the total number of steps taken in a
   forward direction minus the total number of steps taken in the
   reverse direction since the micro-controller was last restarted.</li>
+</ul>
+<h2 id="exclude_object">exclude_object<a class="headerlink" href="#exclude_object" title="Permanent link">&para;</a></h2>
+<p>The following information is available in the
+<a href="Exclude_Object.html">exclude_object</a> object:</p>
+<ul>
+<li>
+<p><code>objects</code>:  An array of the known objects as provided by the
+  <code>EXCLUDE_OBJECT_DEFINE</code> command.  This is the same information provided by
+  the <code>EXCLUDE_OBJECT VERBOSE=1</code> command. The <code>center</code> and <code>polygon</code> fields will
+  only be present if provided in the original <code>EXCLUDE_OBJECT_DEFINE</code></p>
+<p>Here is a JSON sample:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>[
+  {
+    &quot;polygon&quot;: [
+      [ 156.25, 146.2511675 ],
+      [ 156.25, 153.7488325 ],
+      [ 163.75, 153.7488325 ],
+      [ 163.75, 146.2511675 ]
+    ],
+    &quot;name&quot;: &quot;CYLINDER_2_STL_ID_2_COPY_0&quot;,
+    &quot;center&quot;: [ 160, 150 ]
+  },
+  {
+    &quot;polygon&quot;: [
+      [ 146.25, 146.2511675 ],
+      [ 146.25, 153.7488325 ],
+      [ 153.75, 153.7488325 ],
+      [ 153.75, 146.2511675 ]
+    ],
+    &quot;name&quot;: &quot;CYLINDER_2_STL_ID_1_COPY_0&quot;,
+    &quot;center&quot;: [ 150, 150 ]
+  }
+]
+</code></pre></div>
+
+<ul>
+<li><code>excluded_objects</code>: An array of strings listing the names of excluded objects.</li>
+<li><code>current_object</code>: The name of the object currently being printed.</li>
+</ul>
+<h2 id="extruder_stepper">extruder_stepper<a class="headerlink" href="#extruder_stepper" title="Permanent link">&para;</a></h2>
+<p>The following information is available for extruder_stepper objects (as well as
+<a href="Config_Reference.html#extruder">extruder</a> objects):</p>
+<ul>
+<li><code>pressure_advance</code>: The current <a href="Pressure_Advance.html">pressure advance</a> value.</li>
+<li><code>smooth_time</code>: The current pressure advance smooth time.</li>
 </ul>
 <h2 id="fan">fan<a class="headerlink" href="#fan" title="Permanent link">&para;</a></h2>
 <p>The following information is available in
@@ -1945,6 +2110,17 @@ is always available):</p>
   chain could be accessed at
   <code>printer["neopixel &lt;config_name&gt;"].color_data[1][2]</code>.</li>
 </ul>
+<h2 id="manual_probe">manual_probe<a class="headerlink" href="#manual_probe" title="Permanent link">&para;</a></h2>
+<p>The following information is available in the
+<code>manual_probe</code> object:</p>
+<ul>
+<li><code>is_active</code>: Returns True if a manual probing helper script is currently
+active.</li>
+<li><code>z_position</code>: The current height of the nozzle (as the printer currently
+understands it).</li>
+<li><code>z_position_lower</code>: Last probe attempt just lower than the current height.</li>
+<li><code>z_position_upper</code>: Last probe attempt just greater than the current height.</li>
+</ul>
 <h2 id="mcu">mcu<a class="headerlink" href="#mcu" title="Permanent link">&para;</a></h2>
 <p>The following information is available in
 <a href="Config_Reference.html#mcu">mcu</a> and
@@ -2002,8 +2178,12 @@ is defined):</p>
 defined):</p>
 <ul>
 <li><code>filename</code>, <code>total_duration</code>, <code>print_duration</code>, <code>filament_used</code>,
-  <code>state</code>, <code>message</code>: Estimated information about the current print
-  when a virtual_sdcard print is active.</li>
+  <code>state</code>, <code>message</code>: Estimated information about the current print when a
+  virtual_sdcard print is active.</li>
+<li><code>info.total_layer</code>: The total layer value of the last <code>SET_PRINT_STATS_INFO
+   TOTAL_LAYER=&lt;value&gt;</code> G-Code command.</li>
+<li><code>info.current_layer</code>: The current layer value of the last
+  <code>SET_PRINT_STATS_INFO CURRENT_LAYER=&lt;value&gt;</code> G-Code command.</li>
 </ul>
 <h2 id="probe">probe<a class="headerlink" href="#probe" title="Permanent link">&para;</a></h2>
 <p>The following information is available in the
@@ -2116,6 +2296,8 @@ objects (eg, <code>[tmc2208 stepper_x]</code>):</p>
 <li><code>axis_minimum</code>, <code>axis_maximum</code>: The axis travel limits (mm) after
   homing.  It is possible to access the x, y, z components of this
   limit value (eg, <code>axis_minimum.x</code>, <code>axis_maximum.z</code>).</li>
+<li>For Delta printers the <code>cone_start_z</code> is the max z height at
+  maximum radius (<code>printer.toolhead.cone_start_z</code>).</li>
 <li><code>max_velocity</code>, <code>max_accel</code>, <code>max_accel_to_decel</code>,
   <code>square_corner_velocity</code>: The current printing limits that are in
   effect. This may differ from the config file settings if a
@@ -2152,6 +2334,19 @@ object is always available):</p>
   state. Possible values are: "ready", "startup", "shutdown", "error".</li>
 <li><code>state_message</code>: A human readable string giving additional context
   on the current Klipper state.</li>
+</ul>
+<h2 id="z_thermal_adjust">z_thermal_adjust<a class="headerlink" href="#z_thermal_adjust" title="Permanent link">&para;</a></h2>
+<p>The following information is available in the <code>z_thermal_adjust</code> object (this
+object is available if <a href="Config_Reference.html#z_thermal_adjust">z_thermal_adjust</a>
+is defined).</p>
+<ul>
+<li><code>enabled</code>: Returns True if adjustment is enabled.</li>
+<li><code>temperature</code>: Current (smoothed) temperature of the defined sensor. [degC]</li>
+<li><code>measured_min_temp</code>: Minimum measured temperature. [degC]</li>
+<li><code>measured_max_temp</code>: Maximum measured temperature. [degC]</li>
+<li><code>current_z_adjust</code>: Last computed Z adjustment [mm].</li>
+<li><code>z_adjust_ref_temperature</code>: Current reference temperature used for calculation
+  of Z <code>current_z_adjust</code> [degC].</li>
 </ul>
 <h2 id="z_tilt">z_tilt<a class="headerlink" href="#z_tilt" title="Permanent link">&para;</a></h2>
 <p>The following information is available in the <code>z_tilt</code> object (this
