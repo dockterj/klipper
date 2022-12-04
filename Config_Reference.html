@@ -1052,6 +1052,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ads1118" class="md-nav__link">
+    [ads1118]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#heater_generic" class="md-nav__link">
     [heater_generic]
   </a>
@@ -1102,6 +1109,13 @@
           <li class="md-nav__item">
   <a href="#maxxxxxx-temperature-sensors" class="md-nav__link">
     MAXxxxxx temperature sensors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ads1118-with-thermocouple-temperature-sensors" class="md-nav__link">
+    ADS1118 with thermocouple temperature sensors
   </a>
   
 </li>
@@ -2973,6 +2987,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ads1118" class="md-nav__link">
+    [ads1118]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#heater_generic" class="md-nav__link">
     [heater_generic]
   </a>
@@ -3023,6 +3044,13 @@
           <li class="md-nav__item">
   <a href="#maxxxxxx-temperature-sensors" class="md-nav__link">
     MAXxxxxx temperature sensors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ads1118-with-thermocouple-temperature-sensors" class="md-nav__link">
+    ADS1118 with thermocouple temperature sensors
   </a>
   
 </li>
@@ -5549,6 +5577,31 @@ section.</p>
 #   least two measurements must be provided.
 </code></pre></div>
 
+<h3 id="ads1118">[ads1118]<a class="headerlink" href="#ads1118" title="Permanent link">&para;</a></h3>
+<p>ADS1118 serial peripheral interface (SPI) temperature based
+ADCs with thermocouples.  This module provides two pins
+that correspond to MUX configurations (pin_0 reads AIN0 and AIN1
+differentially and pin_1 reads AIN2 and AIN3 differentially).
+These pins can be utilized by thermocouples (e.g.
+<a href="#ADS1118-with-thermocouple-temperature-sensors">ads1118_typek</a>).
+Cold junction temperatures are sampled automatically and
+compensation is applied. Be sure to place the sensor section in
+the config file above its first use in a heater section.</p>
+<div class="highlight"><pre><span></span><code>[ads1118]
+sensor_pin:
+#   The chip select line for the sensor chip. This parameter must be
+#   provided.
+#spi_speed: 4000000
+#   The SPI speed (in hz) to use when communicating with the chip.
+#   The default is 4000000.
+#spi_bus:
+#spi_software_sclk_pin:
+#spi_software_mosi_pin:
+#spi_software_miso_pin:
+#   See the &quot;common SPI settings&quot; section for a description of the
+#   above parameters.
+</code></pre></div>
+
 <h3 id="heater_generic">[heater_generic]<a class="headerlink" href="#heater_generic" title="Permanent link">&para;</a></h3>
 <p>Generic heaters (one may define any number of sections with a
 "heater_generic" prefix). These heaters behave similarly to standard
@@ -5673,6 +5726,20 @@ sensor_pin:
 #   The above parameters control the sensor parameters of MAX31865
 #   chips. The defaults for each parameter are next to the parameter
 #   name in the above list.
+</code></pre></div>
+
+<h3 id="ads1118-with-thermocouple-temperature-sensors">ADS1118 with thermocouple temperature sensors<a class="headerlink" href="#ads1118-with-thermocouple-temperature-sensors" title="Permanent link">&para;</a></h3>
+<p>ADS1118 serial peripheral interface (SPI) ADCs with one or two
+type K thermocouples.  The following parameters are available in
+heater sections that use this sensor.  Cold junction
+temperature compensation is automatically provided by the
+<a href="#ads1118">ads1118</a> module.</p>
+<div class="highlight"><pre><span></span><code>sensor_type: ads1118_typek
+sensor_pin:
+#   Hareware mux channel the thermocopule is connected to.  The
+#   &quot;[ads1118]&quot; module creates two pins (ads1118:pin_0 and
+#   ads1118:pin_1). pin_0 reads thermocouples connected to AIN0 and
+#   AIN1.  pin_1 reads thermocouples connected to AIN2 and AIN3.
 </code></pre></div>
 
 <h3 id="bmp280bme280bme680-temperature-sensor">BMP280/BME280/BME680 temperature sensor<a class="headerlink" href="#bmp280bme280bme680-temperature-sensor" title="Permanent link">&para;</a></h3>
