@@ -1,22 +1,11 @@
-# Mightyboard Rev G and H support - Fork of Klipper3d/klipper
+# Mightyboard Rev E, G and H support - Fork of Klipper3d/klipper
 
-This fork adds support for Makerbot Replicator2/2X
-(Mightyboard rev g and h) and some clones.
+This fork adds support for Makerbot Replicator 1/2/2X
+(Mightyboard rev e, g and h).
 
-**STATUS** - I would consider master to be at a late beta stage.
-Everything that can be supported is at this point and all
-features are working.  This has been tested on a small number
-of printers and more wide spread testing would be appreciated.
-The example config file will be updated to incorporate
-setting hold currents while pre-heating.
-
-**Supported clones**
-Currently, no clones have example config files or instructions
-for flashing Klipper.  If you have a Replicator clone that
-uses k type thermocouples and/or an ADS1118 adc chip and
-want to get Klipper running on it let me know and submit
-a sample config file and flashing instructions and I will
-include them in this repo.
+**STATUS** - Replicator 2 and 2X profiles still need to be updated
+to include certain printer specific macros and separate specific
+configs. Replicator 1 config still needs to be created.
 
 Printers that may use ADS1118 ADCs and may work with this
 repo include:
@@ -39,12 +28,13 @@ repo include:
 * Adds example g code macros to emulate some original Makerbot behaviors
 
 /config/printer-makerbot-replicator2x-2012.cfg can be used as a starting point 
-for both 2 and 2x printers.  Replicator2 printers can simply delete or comment
-the second extruder and the heated bed plate settings.
+for 2x printers.  
+/config/printer-makerbot-replicator2-2012.cfg can be used as a starting point
+for Replicator 2 printers.
 
 # Installation
 
-(Add specific steps for cloning this repo manually and/or using KIUAH)
+To-do: (Add specific steps for cloning this repo manually and/or using KIUAH)
 
 Clone this repo and do the normal installation steps.
 
@@ -74,17 +64,15 @@ should work but needs to be tested to confirm.
 * The generic-mightyboard.cfg in the main repo should NOT be use
 for these printers.  That config file is for the original
 Makerbot Replicator and clones and does not work with printers
-that have ADS1118 adc and thermocouples.  Make sure to use the
-config file specific for the rep2x as a basis for these printers.
+that have ADS1118 adc and thermocouples.
 * There is no specific error for a disconnected thermocouple however
 the printer will shut down if a thermocouple is not attached (this
 triggers a temperature out of range error).
-* The included
-printer.cfg changes the origin (0,0) to be in the left front of the build
-plate to be consistent with other cartesian printers.  Keeping the original
-Replicator origin (which resembles a delta printer) requires updating
-position_min, position_max, position_endstop, and bed_screws values for the
-x and y axix
+* The included printer.cfg changes the origin (0,0) to be in the left 
+front of the build plate to be consistent with other cartesian printers.  
+Keeping the original Replicator origin (which resembles a delta printer) 
+requires updating position_min, position_max, position_endstop, and 
+bed_screws values for the x and y axis.
 * Please watch or star this repo if you are interested.  The more
 people that use this the better the chances of getting it included
 upstream.  Feel free to file issues in this repo for questions or
