@@ -23,10 +23,10 @@ class LEDHelper:
         blue = config.getfloat('initial_BLUE', 0., minval=0., maxval=1.)
         white = config.getfloat('initial_WHITE', 0., minval=0., maxval=1.)
         blink = config.getfloat('initial_BLINK', 0., minval=0., maxval=1.)
-        color = (red, green, blue, white, blink)
-        if not self.has_blink:
-            color = tuple(list(color)[:4])
-        self.led_state = [color] * led_count
+        if self.has_blink:
+            self.led_state = [(red, green, blue, white, blink)] * led_count
+        else:
+            self.led_state = [(red, green, blue, white)] * led_count
         # Register commands
         name = config.get_name().split()[-1]
         gcode = self.printer.lookup_object('gcode')
@@ -35,9 +35,14 @@ class LEDHelper:
     def get_led_count(self):
         return self.led_count
     def set_color(self, index, color):
-        color = tuple((list(color) + ([0.] * 5))[:5])
-        if not self.has_blink:
-            color = tuple(list(color)[:4])
+        temp = list(color)
+        temp += [0.] * 5
+        if self.has_blink:
+            temp = temp[:5]
+            color = tuple(temp)
+        else:
+            temp = temp[:4]
+        color = tuple(temp)
         if index is None:
             new_led_state = [color] * self.led_count
             if self.led_state == new_led_state:
@@ -68,7 +73,10 @@ class LEDHelper:
         index = gcmd.get_int('INDEX', None, minval=1, maxval=self.led_count)
         transmit = gcmd.get_int('TRANSMIT', 1)
         sync = gcmd.get_int('SYNC', 1)
-        color = (red, green, blue, white, blink)
+        if self.has_blink:
+            color = (red, green, blue, white, blink)
+        else:
+            color = (red, green, blue, white)
         # Update and transmit data
         def lookahead_bgfunc(print_time):
             self.set_color(index, color)
@@ -140,13 +148,21 @@ class PrinterLED:
             if color is None:
                 try:
                     text = template.render(context, **lparams)
-                    parts = [max(0., min(1., float(f)))
-                             for f in text.split(',', 5)]
+                    if self.has_blink:
+                        parts = [max(0., min(1., float(f)))
+                                 for f in text.split(',', 5)]
+                    else:
+                        parts = [max(0., min(1., float(f)))
+                                 for f in text.split(',', 4)]
                 except Exception as e:
                     logging.exception("led template render error")
                     parts = []
-                if len(parts) < 5:
-                    parts += [0.] * (5 - len(parts))
+                if self.has_blink:
+                    if len(parts) < 5:
+                        parts += [0.] * (5 - len(parts))
+                else:
+                    if len(parts) < 4:
+                        parts += [0.] * (4 - len(parts))
                 rendered[uid] = color = tuple(parts)
             need_transmit[led_helper] = 1
             led_helper.set_color(index, color)
