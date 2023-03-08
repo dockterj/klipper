@@ -11,22 +11,18 @@ RENDER_TIME = 0.500
 
 # Helper code for common LED initialization and control
 class LEDHelper:
-    def __init__(self, config, update_func, led_count=1, has_blink=False):
+    def __init__(self, config, update_func, led_count=1):
         self.printer = config.get_printer()
         self.update_func = update_func
         self.led_count = led_count
         self.need_transmit = False
-        self.has_blink = has_blink
         # Initial color
         red = config.getfloat('initial_RED', 0., minval=0., maxval=1.)
         green = config.getfloat('initial_GREEN', 0., minval=0., maxval=1.)
         blue = config.getfloat('initial_BLUE', 0., minval=0., maxval=1.)
         white = config.getfloat('initial_WHITE', 0., minval=0., maxval=1.)
         blink = config.getfloat('initial_BLINK', 0., minval=0., maxval=1.)
-        if self.has_blink:
-            self.led_state = [(red, green, blue, white, blink)] * led_count
-        else:
-            self.led_state = [(red, green, blue, white)] * led_count
+        self.led_state = [(red, green, blue, white, blink)] * led_count
         # Register commands
         name = config.get_name().split()[-1]
         gcode = self.printer.lookup_object('gcode')
@@ -35,14 +31,6 @@ class LEDHelper:
     def get_led_count(self):
         return self.led_count
     def set_color(self, index, color):
-        temp = list(color)
-        temp += [0.] * 5
-        if self.has_blink:
-            temp = temp[:5]
-            color = tuple(temp)
-        else:
-            temp = temp[:4]
-        color = tuple(temp)
         if index is None:
             new_led_state = [color] * self.led_count
             if self.led_state == new_led_state:
@@ -73,10 +61,7 @@ class LEDHelper:
         index = gcmd.get_int('INDEX', None, minval=1, maxval=self.led_count)
         transmit = gcmd.get_int('TRANSMIT', 1)
         sync = gcmd.get_int('SYNC', 1)
-        if self.has_blink:
-            color = (red, green, blue, white, blink)
-        else:
-            color = (red, green, blue, white)
+        color = (red, green, blue, white, blink)
         # Update and transmit data
         def lookahead_bgfunc(print_time):
             self.set_color(index, color)
@@ -108,11 +93,10 @@ class PrinterLED:
         gcode = self.printer.lookup_object('gcode')
         gcode.register_command("SET_LED_TEMPLATE", self.cmd_SET_LED_TEMPLATE,
                                desc=self.cmd_SET_LED_TEMPLATE_help)
-    def setup_helper(self, config, update_func, led_count=1, has_blink=False):
-        led_helper = LEDHelper(config, update_func, led_count, has_blink)
+    def setup_helper(self, config, update_func, led_count=1):
+        led_helper = LEDHelper(config, update_func, led_count)
         name = config.get_name().split()[-1]
         self.led_helpers[name] = led_helper
-        self.has_blink = has_blink
         return led_helper
     def _activate_timer(self):
         if self.render_timer is not None or not self.active_templates:
@@ -148,21 +132,13 @@ class PrinterLED:
             if color is None:
                 try:
                     text = template.render(context, **lparams)
-                    if self.has_blink:
-                        parts = [max(0., min(1., float(f)))
-                                 for f in text.split(',', 5)]
-                    else:
-                        parts = [max(0., min(1., float(f)))
-                                 for f in text.split(',', 4)]
+                    parts = [max(0., min(1., float(f)))
+                             for f in text.split(',', 4)]
                 except Exception as e:
                     logging.exception("led template render error")
                     parts = []
-                if self.has_blink:
-                    if len(parts) < 5:
-                        parts += [0.] * (5 - len(parts))
-                else:
-                    if len(parts) < 4:
-                        parts += [0.] * (4 - len(parts))
+                if len(parts) < 4:
+                    parts += [0.] * (4 - len(parts))
                 rendered[uid] = color = tuple(parts)
             need_transmit[led_helper] = 1
             led_helper.set_color(index, color)
