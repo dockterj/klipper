@@ -42,10 +42,6 @@ config FLASH_SIZE
     hex
     default 0x80000
 
-config FLASH_BOOT_ADDRESS
-    hex
-    default 0x0
-
 config RAM_START
     hex
     default 0x10000000
