@@ -1,12 +1,10 @@
 // Support for ADS1118 ADC with up to two thermocouples
 //
 // Copyright (C) 2022  Jacob Dockter <dockterj@gmail.com>
-// Largely based on code from src/thermocouple.c
 //
 // This file may be distributed under the terms of the GNU GPLv3 license.
 
 #include <string.h> // memcpy
-#include <stdbool.h>
 #include "board/irq.h" // irq_disable
 #include "basecmd.h" // oid_alloc
 #include "byteorder.h" // be32_to_cpu
@@ -26,30 +24,22 @@ struct thermocouple_spi {
     uint32_t rest_time;
     int16_t min_value;           // Min allowed ADC value
     int16_t max_value;           // Max allowed ADC value
-    int16_t adc_chan_a_mv, adc_chan_b_mv, cj_temp;
-    bool new_reading_chan_a;
-    bool new_reading_chan_b;
+    uint32_t value;
     struct spidev_s *spi;
-    uint8_t max_invalid, invalid_count;
     uint8_t chip_type, flags;
-    uint8_t state, cj_loop;
 };
 
 enum {
     TS_PENDING = 1,
 };
 
-//todo - store these in appropriate spi?
-//  create and store all values in chan A spi
-//  don't process chan b in these loops, but
-//  send the response when read in chan A
-//  chan A = initiator, main, primary, parent
-//  chan B = device, replica, secondary, child
-int16_t cj_temp;
-int16_t adcA_mv;
-int16_t adcB_mv;
-//todo - store these in chan A spi
-bool has_b;
+
+uint32_t ads_cj;
+uint32_t ads_t1;
+uint32_t ads_t2;
+uint8_t cj_loop;
+uint8_t has_b;
+uint8_t state;
 
 static struct task_wake thermocouple_wake;
 
@@ -69,6 +59,7 @@ command_config_ads1118(uint32_t *args)
     uint8_t chip_type = args[2];
     if (chip_type > TS_CHIP_ADS1118B)
         shutdown("Invalid thermocouple chip type");
+
     struct thermocouple_spi *spi = oid_alloc(
         args[0], command_config_ads1118, sizeof(*spi));
     spi->timer.func = thermocouple_event;
@@ -77,8 +68,9 @@ command_config_ads1118(uint32_t *args)
         spi->spi = spidev_oid_lookup(args[1]);
     }
     spi->chip_type = chip_type;
+
     if (chip_type == TS_CHIP_ADS1118B) {
-        has_b = true;
+        has_b = 1;
     }
 }
 DECL_COMMAND(command_config_ads1118,
@@ -87,6 +79,8 @@ DECL_COMMAND(command_config_ads1118,
 void
 command_query_ads1118(uint32_t *args)
 {
+    sendf("ads1118_query oid=%c type=%c",
+          args[0], args[1]);
     struct thermocouple_spi *spi = oid_lookup(
         args[0], command_config_ads1118);
 
@@ -97,8 +91,6 @@ command_query_ads1118(uint32_t *args)
         return;
     spi->min_value = args[3];
     spi->max_value = args[4];
-    spi->max_invalid = args[5];
-    spi->invalid_count = 0;
     sched_add_timer(&spi->timer);
 }
 DECL_COMMAND(command_query_ads1118,
@@ -107,28 +99,27 @@ DECL_COMMAND(command_query_ads1118,
 
 static void
 ads1118_respond(struct thermocouple_spi *spi, uint32_t next_begin_time
-                     , int16_t adc_mv, int16_t cj_temp, uint8_t fault
+                     , uint32_t value, uint32_t value2, uint8_t fault
                      , uint8_t oid)
 {
-    sendf("ads1118_result oid=%c next_clock=%u adc_mv=%hi cj_temp=%hi fault=%c",
-          oid, next_begin_time, adc_mv, cj_temp, fault);
+    sendf("ads1118_result oid=%c next_clock=%u value=%u value2=%u fault=%c",
+          oid, next_begin_time, value, value2, fault);
     /* check the result and stop if below or above allowed range */
-    if (fault || adc_mv < spi->min_value || adc_mv > spi->max_value) {
-        spi->invalid_count++;
-        if (spi->invalid_count < spi->max_invalid)
-            return;
-        try_shutdown("Thermocouple reader fault");
+    int16_t valueS = (int16_t)value;
+    if (valueS < spi->min_value || valueS > spi->max_value) {
+        sendf("thermocouple_out_of_range oid=%c next_clock=%u value=%hi "
+               "min=%hi max=%hi", oid, next_begin_time, valueS, spi->min_value,
+               spi->max_value);
+        try_shutdown("Thermocouple ADC out of range");
     }
-    spi->invalid_count = 0;
 }
 
 static void
 thermocouple_handle_ads1118(struct thermocouple_spi *spi
                              , uint32_t next_begin_time, uint8_t oid)
 {
-    //todo - check if conversion is ready before reading
     uint8_t msg[4];
-    uint8_t cur_state = spi->state;
+    uint8_t cur_state = state;
     uint8_t next_state;
 
     next_state = cur_state + 1;
@@ -137,15 +128,14 @@ thermocouple_handle_ads1118(struct thermocouple_spi *spi
         next_state = 4;
     }
 
-    // loop around to state 1, but only read the cold junction every 10th
-    // or 20th  iteration
+    // loop around to state 1, but only read the cold junction every 10th iteration
     if (next_state == 4) {
         next_state = 1;
-        spi->cj_loop += 1;
-        if (spi->cj_loop < 9) {
+        cj_loop += 1;
+        if (cj_loop < 9) {
             next_state = 2;
         } else {
-            spi->cj_loop = 0;
+            cj_loop = 0;
         }
     }
 
@@ -178,34 +168,30 @@ thermocouple_handle_ads1118(struct thermocouple_spi *spi
     memcpy(&value, msg, sizeof(value));
     value = be32_to_cpu(value) >> 16;
 
-    // value read will be for the cur_state
+    // value will be for the cur_state
     if (cur_state == 0) {
         // init - read cold junction next time around
     } else if (cur_state == 1) {
-        // cold junction temperature is returned in a 14 bit
-        // signed (two's compliment) int
-        // todo - test conversion for negative cj_temp values
-        value = value >> 2;
-        //if (value && 0x2000)
-            //value = value - (1 << 14);
-        cj_temp = (int16_t)value;
-        spi->cj_temp = (int16_t)value;
-        output("ads1118_result oid=%c cj_temp=%hi",
-          oid, cj_temp);
+        uint32_t value1 = value >> 2;
+        ads_cj = value1;
+        sendf("thermocouple_result_cj oid=%c next_clock=%u value=%u state=%c",
+               oid, next_begin_time, value1, state);
     } else if (cur_state == 2) {
-        adcA_mv = (int16_t)value;
-        spi->adc_chan_a_mv = (int16_t)value;
-        spi->new_reading_chan_a = true;
-        output("ads1118_result_a oid=%c adc_mv=%hi",
-          oid, adcA_mv);
+        sendf("thermocouple_result_ads1118a_new oid=%c next_clock=%u value=%u state=%c",
+               oid, next_begin_time, value, state);
+
+        ads_t1 = value;
     } else if (cur_state == 3) {
-        adcB_mv = (int16_t)value;
-        spi->adc_chan_b_mv = (int16_t)value;
-        spi->new_reading_chan_b = true;
-        output("ads1118_result_b oid=%c adc_mv=%hi",
-          oid, adcB_mv);
+        sendf("thermocouple_result_ads1118b oid=%c next_clock=%u value=%u state=%c",
+               oid, next_begin_time, value, state);
+
+        ads_t2 = value;
     }
-    spi->state = next_state;
+    state = next_state;
+
+    // Kill after data send, host decode an error
+    //if (value & 0x04)
+        //try_shutdown("Thermocouple reader fault");
 }
 
 // task to read thermocouple and send response
@@ -226,16 +212,15 @@ ads1118_task(void)
         switch (spi->chip_type) {
         case TS_CHIP_ADS1118A:
             thermocouple_handle_ads1118(spi, next_begin_time, oid);
-            //todo - set fault somewhere for overrange, underrange, open circuit
-            if (spi->new_reading_chan_a) {
-                ads1118_respond(spi, next_begin_time, adcA_mv, cj_temp, 0, oid);
-                spi->new_reading_chan_a = false;
+            if (ads_t1 > 0) {
+                ads1118_respond(spi, next_begin_time, ads_t1, ads_cj, 0, oid);
+                ads_t1 = 0;
             }
             break;
         case TS_CHIP_ADS1118B:
-            if (spi->new_reading_chan_b) {
-                ads1118_respond(spi, next_begin_time, adcB_mv, cj_temp, 0, oid);
-                spi->new_reading_chan_b = false;
+            if (ads_t2 > 0) {
+                ads1118_respond(spi, next_begin_time, ads_t2, ads_cj, 0, oid);
+                ads_t2 = 0;
             }
             break;
         }
