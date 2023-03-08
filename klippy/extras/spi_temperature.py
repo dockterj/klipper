@@ -16,14 +16,16 @@ REPORT_TIME = 0.300
 MAX_INVALID_COUNT = 3
 
 class SensorBase:
-    def __init__(self, config, chip_type, config_cmd=None, spi_mode=1):
+    def __init__(self, config, chip_type, config_cmd=None, spi_mode=1,
+        has_soft_mosi=True):
         self.printer = config.get_printer()
         self.chip_type = chip_type
         self._callback = None
         self.min_sample_value = self.max_sample_value = 0
         self._report_clock = 0
         self.spi = bus.MCU_SPI_from_config(
-            config, spi_mode, pin_option="sensor_pin", default_speed=4000000)
+            config, spi_mode, pin_option="sensor_pin", default_speed=4000000,
+            has_soft_mosi=has_soft_mosi)
         if config_cmd is not None:
             self.spi.spi_send(config_cmd)
         self.mcu = mcu = self.spi.get_mcu()
@@ -227,7 +229,8 @@ MAX6675_MULT = 0.25
 
 class MAX6675(SensorBase):
     def __init__(self, config):
-        SensorBase.__init__(self, config, "MAX6675", spi_mode=0)
+        SensorBase.__init__(self, config, "MAX6675", spi_mode=0,
+            has_soft_mosi=False)
     def handle_fault(self, adc, fault):
         if fault & 0x02:
             self.report_fault("Max6675 : Device ID error")

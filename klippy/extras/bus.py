@@ -4,6 +4,7 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import mcu
+import uuid
 
 def resolve_bus_name(mcu, param, bus):
     # Find enumerations for the given bus
@@ -130,11 +131,12 @@ def MCU_SPI_from_config(config, mode, pin_option="cs_pin",
                     {name: ppins.lookup_pin(config.get(config_name),
                              share_type=config_name)})
             else:
+                dummy_pin = str(uuid.uuid4())
                 sw_pins.update(
                     {name: ppins.lookup_pin(config.get(config_name,
-                                    default='dummy'),
+                                    default=dummy_pin),
                              share_type=config_name)})
-                if sw_pins[name]['pin'] == 'dummy':
+                if sw_pins[name]['pin'] == dummy_pin:
                     sw_pins[name]['pin'] = sw_pins['sclk']['pin']
                     sw_pins[name]['chip'] = sw_pins['sclk']['chip']
             if sw_pins[name]['chip'] != mcu:
