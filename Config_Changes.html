@@ -1196,6 +1196,20 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Bootloader Entry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CANBUS
       </a>
@@ -1323,6 +1337,23 @@ are not backwards compatible. It is a good idea to review this
 document when upgrading the Klipper software.</p>
 <p>All dates in this document are approximate.</p>
 <h2 id="changes">Changes<a class="headerlink" href="#changes" title="Permanent link">&para;</a></h2>
+<p>20231216: The <code>[hall_filament_width_sensor]</code> is changed to trigger filament runout
+when the thickness of the filament exceeds <code>max_diameter</code>. The maximum diameter
+defaults to <code>default_nominal_filament_diameter + max_difference</code>. See
+<a href="Config_Reference.html#hall_filament_width_sensor">[hall_filament_width_sensor] configuration
+reference</a> for more details.</p>
+<p>20231207: Several undocumented config parameters in the <code>[printer]</code>
+config section have been removed (the buffer_time_low,
+buffer_time_high, buffer_time_start, and move_flush_time parameters).</p>
+<p>20231110: Klipper v0.12.0 released.</p>
+<p>20230826: If <code>safe_distance</code> is set or calculated to be 0 in <code>[dual_carriage]</code>,
+the carriages proximity checks will be disabled as per documentation. A user
+may wish to configure <code>safe_distance</code> explicitly to prevent accidental crashes
+of the carriages with each other. Additionally, the homing order of the primary
+and the dual carriage is changed in some configurations (certain configurations
+when both carriages home in the same direction, see
+<a href="Config_Reference.html#dual_carriage">[dual_carriage] configuration reference</a>
+for more details).</p>
 <p>20230810: The flash-sdcard.sh script now supports both variants of the
 Bigtreetech SKR-3, STM32H743 and STM32H723. For this, the original tag
 of btt-skr-3 now has changed to be either btt-skr-3-h743 or btt-skr-3-h723.</p>

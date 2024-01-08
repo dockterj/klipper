@@ -2767,6 +2767,20 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Bootloader Entry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CANBUS
       </a>
@@ -5159,7 +5173,8 @@ any previous template assigned to the LED (one can then use <code>SET_LED</code>
 commands to manage the LED's color settings).</p>
 <h3 id="output_pin">[output_pin]<a class="headerlink" href="#output_pin" title="Permanent link">&para;</a></h3>
 <p>The following command is available when an
-<a href="Config_Reference.html#output_pin">output_pin config section</a> is
+<a href="Config_Reference.html#output_pin">output_pin config section</a> or
+<a href="Config_Reference.html#pwm_tool">pwm_tool config section</a> is
 enabled.</p>
 <h4 id="set_pin">SET_PIN<a class="headerlink" href="#set_pin" title="Permanent link">&para;</a></h4>
 <p><code>SET_PIN PIN=config_name VALUE=&lt;value&gt; [CYCLE_TIME=&lt;cycle_time&gt;]</code>: Set
@@ -5529,8 +5544,11 @@ argument for fields that represent velocities.</p>
 <p>The toolhead module is automatically loaded.</p>
 <h4 id="set_velocity_limit">SET_VELOCITY_LIMIT<a class="headerlink" href="#set_velocity_limit" title="Permanent link">&para;</a></h4>
 <p><code>SET_VELOCITY_LIMIT [VELOCITY=&lt;value&gt;] [ACCEL=&lt;value&gt;]
-[ACCEL_TO_DECEL=&lt;value&gt;] [SQUARE_CORNER_VELOCITY=&lt;value&gt;]</code>: Modify the
-printer's velocity limits.</p>
+[ACCEL_TO_DECEL=&lt;value&gt;] [SQUARE_CORNER_VELOCITY=&lt;value&gt;]</code>: This
+command can alter the velocity limits that were specified in the
+printer config file. See the
+<a href="Config_Reference.html#printer">printer config section</a> for a
+description of each parameter.</p>
 <h3 id="tuning_tower">[tuning_tower]<a class="headerlink" href="#tuning_tower" title="Permanent link">&para;</a></h3>
 <p>The tuning_tower module is automatically loaded.</p>
 <h4 id="tuning_tower_1">TUNING_TOWER<a class="headerlink" href="#tuning_tower_1" title="Permanent link">&para;</a></h4>
