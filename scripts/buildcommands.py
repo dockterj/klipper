@@ -475,7 +475,7 @@ def git_version():
     if extra_files:
         if not ver.endswith('-dirty'):
            logging.debug("Untracked files found.  Adding -dirty")
-            ver = ver + '-dirty'
+           ver = ver + '-dirty'
     return ver
 
 def build_version(extra, cleanbuild):
