@@ -44,13 +44,14 @@ class KeyboardReader:
         if not data:
             sys.stderr.write("Socket closed\n")
             sys.exit(0)
-        parts = data.split('\x03')
+        parts = data.decode('utf-8').split('\x03')
         parts[0] = self.socket_data + parts[0]
         self.socket_data = parts.pop()
         for line in parts:
             sys.stdout.write("GOT: %s\n" % (line,))
     def process_kbd(self):
         data = os.read(self.kbd_fd, 4096)
+        data = data.decode('utf-8')
         parts = data.split('\n')
         parts[0] = self.kbd_data + parts[0]
         self.kbd_data = parts.pop()
@@ -65,7 +66,8 @@ class KeyboardReader:
                 continue
             cm = json.dumps(m, separators=(',', ':'))
             sys.stdout.write("SEND: %s\n" % (cm,))
-            self.webhook_socket.send("%s\x03" % (cm,))
+            self.webhook_socket.send(bytes(cm, 'utf-8'))
+            self.webhook_socket.send(bytes("\x03", 'utf-8'))
     def run(self):
         while 1:
             res = self.poll.poll(1000.)

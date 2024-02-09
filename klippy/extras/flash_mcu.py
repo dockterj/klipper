@@ -10,7 +10,8 @@ class PrinterFlashMCU:
     def __init__(self, config):
         self.printer = config.get_printer()
         self.name = config.get_name().split()[-1]
-        mcu_names = [n.strip() for n in config.get('mcu', 'mcu').split(',')]
+        self.mcu = config.get('mcu', 'mcu')
+        mcu_names = [n.strip() for n in self.mcu.split(',')]
         self.mcus = [mcu.get_printer_mcu(self.printer, m) for m in mcu_names]
         self.kconfig = config.get('kconfig')
         fc = {c: c for c in self._get_flash_choices(["-T"])}
@@ -31,12 +32,15 @@ class PrinterFlashMCU:
                 "Unable to run flash_helper script")
         return [line.split()[0] for line in data.split('\n') if line.split()]
     def handle_get_devices(self, web_request):
-        devs = self._get_flash_choices(["-t", self.flash_method, "-D"])
+        self.flash_method = 'makeflash'
+        #devs = self._get_flash_choices(["-t", self.flash_method, "-D"])
+        devs = self._get_flash_choices(["-t", "makeflash", "-D"])
         web_request.send(devs)
     def _make_kconfig(self, kconfig_filename):
+        # todo - add overrides for current mcu being flashed
         out = "# Automatically generated file from flash_mcu\n" + self.kconfig
         try:
-            f = open(kconfig_filename, 'wb')
+            f = open(kconfig_filename, 'w')
             f.write(out)
             f.close()
         except:
@@ -87,6 +91,16 @@ class PrinterFlashMCU:
             logging.exception("Failed to run command")
             raise error("Error running flash command")
     def handle_flash(self, web_request):
+        #todo pull from config file if not specified
+        name = web_request.get_str("name") + ",mcu"
+        mcu_name = name.split(',')[1]
+        # check that mcu_name is in self.mcu
+        #get mcu.name config
+        #mcu_data = config.getsection('mcu_name')
+        logging.exception("jed")
+        logging.exception(self.printer.lookup_object('mcu')._serial)
+        #if so, get the flash_device setting and kconfig setting
+        #devname = web_request.get_str("device", mcu_flash_device)
         devname = web_request.get_str("device") # XXX - must verify
         srcdir = os.path.dirname(os.path.realpath(__file__))
         makedir = os.path.join(srcdir, '..', '..')
@@ -104,10 +118,12 @@ class PrinterFlashMCU:
         flash_args = [sys.executable, flash_helper, '-t', self.flash_method,
                       '-d', devname, '-k', kconfig_filename,
                       '-o', build_dirname]
+        #todo - would be good to be able to provide a list of mcus
+        #       to update before restarting
         def flash_cb():
             try:
                 self._run_command(flash_args)
-                shutil.rmtree(temp_dirname)
+                #shutil.rmtree(temp_dirname)
             except:
                 logging.exception("Unhandled exception during flash")
         gcode = self.printer.lookup_object('gcode')
@@ -127,7 +143,7 @@ class PrinterFlash:
     def register_mcu(self, name, obj):
         self.handlers[name] = obj
     def _get_name(self, web_request):
-        name = web_request.get_str("name")
+        name = web_request.get_str("name").split(',')[0]
         obj = self.handlers.get(name)
         if obj is None:
             raise web_request.error("Invalid name")

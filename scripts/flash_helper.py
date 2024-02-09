@@ -4,34 +4,66 @@
 # Copyright (C) 2021  Kevin O'Connor <kevin@koconnor.net>
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
-import sys, os, optparse
+import sys, os, optparse, subprocess
 
 def get_flash_types():
-    # XXX - should auto-detect types from flash_usb and flash-sdcard
-    return ["makeflash", "sdcard,btt-skr-mini-e3-v2",
-            "sdcard,btt-skr-mini-mz"]
+    srcdir = os.path.dirname(os.path.realpath(__file__))
+    
+    flash_types = ["makeflash", "makeserialflash", "file", "linux"]
+
+    sdcard_types = subprocess.check_output([os.path.join(srcdir,
+                                           "flash-sdcard.sh"), "-l"]
+                                           ).decode('utf-8')
+    for type in sdcard_types.split('\n')[1:]:
+        flash_types.append("sdcard," + type) 
+    
+    # usb - flash_usb.py -l (no code today)
+    # not clear this is needed as make flash targets exist for this
+
+    # spi - spi_flash/spi_flash.py -l
+    # not clear this is needed as this is handled by flash-sdcard.sh    
+
+    return flash_types
 
 def list_flash_types():
     for t in get_flash_types():
         sys.stdout.write('%s\n' % (t,))
 
 def list_devices(flash_type):
-    # XXX - list applicable devices somehow?
-    dummy_devices = ["/dev/ttyUSB0", "/dev/ttyAMA0", "/dev/ttyACM0"]
-    for d in dummy_devices:
-        sys.stdout.write('%s\n' % (d,))
-
+    if flash_type == "makeflash" or flash_type == "makeserialflash":
+        devices = os.listdir("/dev/serial/by-id")
+        for d in devices:
+            sys.stdout.write('%s\n' % ("/dev/serial/by-id/" + d,))
+        devices = os.listdir("/dev/serial/by-path")
+        for d in devices:
+            sys.stdout.write('%s\n' % ("/dev/serial/by-path/" + d,))
+    elif flash_type.startswith('sdcard,'):
+        devices = os.listdir("/dev")
+        for d in devices:
+            if d.startswith("ttyA") or d.startswith("ttyU"):
+                sys.stdout.write('%s\n' % ("/dev/" + d,))
 
 ######################################################################
 # Flashing code
 ######################################################################
 
 def do_makeflash(device, kconfig, out):
-    # XXX - this is dummy code - we should call avrdude / flash_usb directly
     srcdir = os.path.dirname(os.path.realpath(__file__))
     makedir = os.path.join(srcdir, '..')
     os.system("make -C '%s' OUT='%s' KCONFIG_CONFIG='%s' FLASH_DEVICE='%s'"
               " flash" % (makedir, out, kconfig, device))
+
+def do_makeserialflash(device, kconfig, out):
+    srcdir = os.path.dirname(os.path.realpath(__file__))
+    makedir = os.path.join(srcdir, '..')
+    os.system("make -C '%s' OUT='%s' KCONFIG_CONFIG='%s' FLASH_DEVICE='%s'"
+              " serialflash" % (makedir, out, kconfig, device))
+
+def do_file(device, kconfig, out):
+    srcdir = os.path.dirname(os.path.realpath(__file__))
+    makedir = os.path.join(srcdir, '..')
+    os.system("make -C '%s' OUT='%s' KCONFIG_CONFIG='%s' FLASH_DEVICE='%s'"
+              " serialflash" % (makedir, out, kconfig, device))
 
 def do_sdcard(sdcard_method, device, out):
     # XXX - this is just dummy testing code - should import spi_flash code
@@ -41,12 +73,14 @@ def do_sdcard(sdcard_method, device, out):
               % (srcdir, kbin, device, sdcard_method))
 
 def do_flash(flash_type, device, kconfig, out):
-    # XXX - this is just dummy testing targets
     if flash_type == "makeflash":
         do_makeflash(device, kconfig, out)
+    elif flash_type == "makeserialflash":
+        do_makeserialflash(device, kconfig, out)
     elif flash_type.startswith('sdcard,'):
         do_sdcard(flash_type[7:], device, out)
-
+    elif flash_type.startswith('file'):
+        do_file(device, kconfig, out)
 
 ######################################################################
 # Startup
