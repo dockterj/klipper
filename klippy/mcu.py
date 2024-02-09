@@ -545,6 +545,9 @@ class MCU:
             if not (self._serialport.startswith("/dev/rpmsg_")
                     or self._serialport.startswith("/tmp/klipper_host_")):
                 self._baud = config.getint('baud', 250000, minval=2400)
+        # may need to handle canbus differently
+        self._flash_device = config.get('flash_device', self._serialport)
+        self._kconfig = config.get('kconfig', '')
         # Restarts
         restart_methods = [None, 'mightyboard', 'arduino', 'cheetah',
                            'command', 'rpi_usb']
