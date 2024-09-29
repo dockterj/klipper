@@ -2610,8 +2610,6 @@ sensor_pin:
 #   AIN1.  pin_1 reads thermocouples connected to AIN2 and AIN3.
 ```
 
-### BMP180/BMP280/BME280/BMP388/BME680 temperature sensor
-
 BMP180/BMP280/BME280/BMP388/BME680 two wire interface (I2C) environmental sensors.
 Note that these sensors are not intended for use with extruders and
 heater beds, but rather for monitoring ambient temperature (C),
