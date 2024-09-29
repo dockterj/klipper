@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -410,10 +410,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         Installation
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint for Klipper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1579,6 +1626,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Eddy Current Inductive probe
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2411,6 +2472,7 @@ object is available if any stepper is defined):</p>
 <p>The following information is available in</p>
 <p><a href="Config_Reference.html#bmp280bme280bme680-temperature-sensor">bme280 config_section_name</a>,
 <a href="Config_Reference.html#htu21d-sensor">htu21d config_section_name</a>,
+<a href="Config_Reference.html#sht31-sensor">sht3x config_section_name</a>,
 <a href="Config_Reference.html#lm75-temperature-sensor">lm75 config_section_name</a>,
 <a href="Config_Reference.html#host-temperature-sensor">temperature_host config_section_name</a>
 and
@@ -2419,7 +2481,7 @@ objects:</p>
 <ul>
 <li><code>temperature</code>: The last read temperature from the sensor.</li>
 <li><code>humidity</code>, <code>pressure</code>, <code>gas</code>: The last read values from the sensor
-  (only on bme280, htu21d, and lm75 sensors).</li>
+  (only on bme280, htu21d, sht3x and lm75 sensors).</li>
 </ul>
 <h2 id="temperature_fan">temperature_fan<a class="headerlink" href="#temperature_fan" title="Permanent link">&para;</a></h2>
 <p>The following information is available in
@@ -2478,7 +2540,7 @@ objects (eg, <code>[tmc2208 stepper_x]</code>):</p>
   limit value (eg, <code>axis_minimum.x</code>, <code>axis_maximum.z</code>).</li>
 <li>For Delta printers the <code>cone_start_z</code> is the max z height at
   maximum radius (<code>printer.toolhead.cone_start_z</code>).</li>
-<li><code>max_velocity</code>, <code>max_accel</code>, <code>max_accel_to_decel</code>,
+<li><code>max_velocity</code>, <code>max_accel</code>, <code>minimum_cruise_ratio</code>,
   <code>square_corner_velocity</code>: The current printing limits that are in
   effect. This may differ from the config file settings if a
   <code>SET_VELOCITY_LIMIT</code> (or <code>M204</code>) command alters them at run-time.</li>
