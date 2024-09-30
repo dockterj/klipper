@@ -31,9 +31,12 @@ include them in this repo.
 * Adds support for MCU reset (toggle connection baud rate to 57600)
 * Adds support for ADS1118 and k-type thermocouples (one or two extruders)
 * Adds support for hardware blinking of the LEDs
-* Adds support for multiple buttons with same action in display
+* ~Adds support for multiple buttons with same action in display~
+* Adds support for a forward_button in addition to a click_button
 * Removes the need for specifying dummy pins for software spi devices
 * Adds example g code macros to emulate some original Makerbot behaviors
+
+See the changelog for more details.  `CHANGES.md`
 
 **Example Configs:**
 
