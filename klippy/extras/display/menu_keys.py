@@ -32,6 +32,10 @@ class MenuKeys:
                                                  .030, above=0.)
         self.last_encoder_cw_eventtime = 0
         self.last_encoder_ccw_eventtime = 0
+        self.up_down_fast_rate = config.getfloat('up_down_fast_rate',
+                                                 .030, above=0.)
+        self.last_up_eventtime = 0
+        self.last_down_eventtime = 0
         # Register click button
         self.is_short_click = False
         self.click_timer = self.reactor.register_timer(self.long_click_event)
@@ -40,6 +44,7 @@ class MenuKeys:
         self.register_button(config, 'back_pin', self.back_callback)
         self.register_button(config, 'up_pin', self.up_callback)
         self.register_button(config, 'down_pin', self.down_callback)
+        self.register_button(config, 'forward_pin', self.forward_callback)
         self.register_button(config, 'kill_pin', self.kill_callback)
 
     def register_button(self, config, name, callback, push_only=True):
@@ -103,11 +108,26 @@ class MenuKeys:
     def back_callback(self, eventtime):
         self.callback('back', eventtime)
 
+    def forward_callback(self, eventtime):
+        self.callback('forward', eventtime)
+
     def up_callback(self, eventtime):
-        self.callback('up', eventtime)
+        fast_rate = ((eventtime - self.last_up_eventtime)
+                     <= self.up_down_fast_rate)
+        self.last_up_eventtime = eventtime
+        if fast_rate:
+            self.callback('fast_up', eventtime)
+        else:
+            self.callback('up', eventtime)
 
     def down_callback(self, eventtime):
-        self.callback('down', eventtime)
+        fast_rate = ((eventtime - self.last_down_eventtime)
+                     <= self.up_down_fast_rate)
+        self.last_down_eventtime = eventtime
+        if fast_rate:
+            self.callback('fast_down', eventtime)
+        else:
+            self.callback('down', eventtime)
 
     def kill_callback(self, eventtime):
         self.printer.invoke_shutdown("Shutdown due to kill button!")

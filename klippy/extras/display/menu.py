@@ -541,7 +541,7 @@ class MenuInput(MenuCommand):
 
     def _get_input_step(self, fast_rate=False):
         return ((10.0 * self._input_step) if fast_rate and (
-                (self._input_max - self._input_min) / self._input_step > 100.0)
+                (self._input_max - self._input_min) / self._input_step >= 100.0)
                 else self._input_step)
 
     def inc_value(self, fast_rate=False):
@@ -1038,6 +1038,8 @@ class MenuManager:
             self.down(False)
         elif key == 'fast_down':
             self.down(True)
+        elif key == 'forward':
+            self._click_callback(eventtime, 'click')
         elif key == 'back':
             self.back()
         self.display.request_redraw()
