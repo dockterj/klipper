@@ -4157,29 +4157,36 @@ lcd_type:
 #   entries from one detent, try changing this. Allowed values are 2
 #   (half-stepping) or 4 (full-stepping). The default is 4.
 #click_pin:
-#   A comma separated list of pins connected to the 'enter' button or
-#   encoder 'click'. This parameter must be provided when using menu.
-#   The presence of an 'analog_range_click_pin' config parameter turns
-#   this parameter from digital to analog.
+#   The pin connected to 'enter' button or encoder 'click'. This
+#   parameter must be provided when using menu. The presence of an
+#   'analog_range_click_pin' config parameter turns this parameter
+#   from digital to analog.
+#forward_pin:
+#   The pin connected to 'forward' button. This parameter is optional,
+#   menu can be used without it. The presence of an
+#   'analog_range_forward_pin' config parameter turns this parameter from
+#   digital to analog.
+#   A forward_pin will be treated the same as a click_pin (without
+#   support for long_click).
 #back_pin:
-#   A comma separated list of pins connected to the 'back' button. This
-#   parameter is optional, menu can be used without it. The presence
-#   of an 'analog_range_back_pin' config parameter turns this
-#   parameter from digital to analog.
+#   The pin connected to 'back' button. This parameter is optional,
+#   menu can be used without it. The presence of an
+#   'analog_range_back_pin' config parameter turns this parameter from
+#   digital to analog.
 #up_pin:
-#   A comma separated list of pins connected to the 'up' button. This
-#   parameter must be provided when using menu without encoder. The
-#   presence of an 'analog_range_up_pin' config parameter turns this
-#   parameter from digital to analog.
+#   The pin connected to 'up' button. This parameter must be provided
+#   when using menu without encoder. The presence of an
+#   'analog_range_up_pin' config parameter turns this parameter from
+#   digital to analog.
 #down_pin:
-#   A comma separated list of pins connected to the 'down' button. This
-#   parameter must be provided when using menu without encoder. The
-#   presence of an 'analog_range_down_pin' config parameter turns this
-#   parameter from digital to analog.
+#   The pin connected to 'down' button. This parameter must be
+#   provided when using menu without encoder. The presence of an
+#   'analog_range_down_pin' config parameter turns this parameter from
+#   digital to analog.
 #kill_pin:
-#   A comma separated list of pins connected to 'kill' button. This button
-#   will call emergency stop. The presence of an 'analog_range_kill_pin'
-#   config parameter turns this parameter from digital to analog.
+#   The pin connected to 'kill' button. This button will call
+#   emergency stop. The presence of an 'analog_range_kill_pin' config
+#   parameter turns this parameter from digital to analog.
 #analog_pullup_resistor: 4700
 #   The resistance (in ohms) of the pullup attached to the analog
 #   button. The default is 4700 ohms.
@@ -4541,7 +4548,7 @@ information on menu attributes available during template rendering.
 #input_step:
 #   Editing step - Must be a positive integer or float value. It has
 #   internal fast rate step. When "(input_max - input_min) /
-#   input_step > 100" then fast rate step is 10 * input_step else fast
+#   input_step >= 100" then fast rate step is 10 * input_step else fast
 #   rate step is same input_step.
 #realtime:
 #   This attribute accepts static boolean value. When enabled then
