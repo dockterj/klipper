@@ -481,17 +481,6 @@ def git_version():
         return ""
     ver = check_output("git describe --always --tags --long --dirty").strip()
     logging.debug("Got git version: %s" % (repr(ver),))
-    stat = check_output("git status --porcelain --ignored").strip()
-    status = [l.split(None, 1)
-        for l in stat.split('\n')]
-    extra_files = [fname for code, fname in status
-           if (code in ('??', '!!') and fname.endswith('.py')
-               and (fname.startswith('klippy/kinematics/')
-                    or fname.startswith('klippy/extras/')))]
-    if extra_files:
-        if not ver.endswith('-dirty'):
-           logging.debug("Untracked files found.  Adding -dirty")
-           ver = ver + '-dirty'
     return ver
 
 def build_version(extra, cleanbuild):
