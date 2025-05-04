@@ -13,7 +13,7 @@
     
     
       
-        <title>轴扭曲补偿 - Klipper 文档</title>
+        <title>Load Cells - Klipper 文档</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#load-cells" class="md-skip">
           跳转至
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              轴扭曲补偿
+              Load Cells
             
           </span>
         </div>
@@ -381,14 +381,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
       
       
       
@@ -545,14 +543,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" type="checkbox" id="__nav_7_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" type="checkbox" id="__nav_7_4" >
       
       
       
@@ -671,79 +667,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          轴扭曲补偿
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="Axis_Twist_Compensation.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
         轴扭曲补偿
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    薪酬使用概览
-  </a>
-  
-    <nav class="md-nav" aria-label="薪酬使用概览">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#basic-usage-x-axis-calibration" class="md-nav__link">
-    Basic Usage: X-Axis Calibration
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-y-axis-calibration" class="md-nav__link">
-    For Y-Axis Calibration
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#axis_twist_commention" class="md-nav__link">
-    [AXIS_TWIST_COMMENTION]设置和命令
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1400,23 +1328,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    薪酬使用概览
-  </a>
-  
-    <nav class="md-nav" aria-label="薪酬使用概览">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#basic-usage-x-axis-calibration" class="md-nav__link">
-    Basic Usage: X-Axis Calibration
+  <a href="#related-documentation" class="md-nav__link">
+    Related Documentation
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#using-load_cell_diagnostic" class="md-nav__link">
+    Using LOAD_CELL_DIAGNOSTIC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calibrating-a-load-cell" class="md-nav__link">
+    Calibrating a Load Cell
+  </a>
+  
+    <nav class="md-nav" aria-label="Calibrating a Load Cell">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#for-y-axis-calibration" class="md-nav__link">
-    For Y-Axis Calibration
+  <a href="#applying-a-known-force-or-load" class="md-nav__link">
+    Applying a Known Force or Load
   </a>
   
 </li>
@@ -1427,8 +1362,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#axis_twist_commention" class="md-nav__link">
-    [AXIS_TWIST_COMMENTION]设置和命令
+  <a href="#reading-force-data" class="md-nav__link">
+    Reading Force Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taring-a-load-cell" class="md-nav__link">
+    Taring a Load Cell
   </a>
   
 </li>
@@ -1445,60 +1387,76 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/Klipper3d/klipper/blob/master/docs/Axis_Twist_Compensation.md" title="编辑此页" class="md-content__button md-icon">
+<a href="https://github.com/Klipper3d/klipper/blob/master/docs/Load_Cell.md" title="编辑此页" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="_1">轴扭曲补偿<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>This document describes the <code>[axis_twist_compensation]</code> module.</p>
-<p>Some printers may have a small twist in their X rail which can skew the results of a probe attached to the X carriage. This is common in printers with designs like the Prusa MK3, Sovol SV06 etc and is further described under <a href="Probe_Calibrate.html#location-bias-check">probe location
-bias</a>. It may result in probe operations such as <a href="Bed_Mesh.html">Bed Mesh</a>, <a href="G-Codes.html#screws_tilt_adjust">Screws Tilt Adjust</a>, <a href="G-Codes.html#z_tilt_adjust">Z Tilt Adjust</a> etc returning inaccurate representations of the bed.</p>
-<p>该模块使用用户手动测量来修正探头的结果。请注意，如果您的轴严重扭曲，强烈建议您在应用软件更正之前首先使用机械方法修复它。</p>
-<p><strong>警告</strong>：此模块暂时与可对接探头不兼容，如果使用，将尝试在不连接探头的情况下探床。</p>
-<h2 id="_2">薪酬使用概览<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>提示：</strong>请确保正确设置<a href="Config_Reference.html#Probe">Probe X和Y Offset</a>，因为它们对校准影响很大。</p>
-</blockquote>
-<h3 id="basic-usage-x-axis-calibration">Basic Usage: X-Axis Calibration<a class="headerlink" href="#basic-usage-x-axis-calibration" title="Permanent link">&para;</a></h3>
-<ol>
-<li>After setting up the <code>[axis_twist_compensation]</code> module, run:</li>
-</ol>
-<div class="highlight"><pre><span></span><code>AXIS_TWIST_COMPENSATION_CALIBRATE
+<h1 id="load-cells">Load Cells<a class="headerlink" href="#load-cells" title="Permanent link">&para;</a></h1>
+<p>This document describes Klipper's support for load cells. Basic load cell functionality can be used to read force data and to weigh things like filament. A calibrated force sensor is an important part of a load cell based probe.</p>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="Config_Reference.html#load_cell">load_cell Config Reference</a></li>
+<li><a href="G-Codes.html#load_cell">load_cell G-Code Commands</a></li>
+<li><a href="Status_Reference.html#load_cell">load_cell Status Reference</a></li>
+</ul>
+<h2 id="using-load_cell_diagnostic">Using <code>LOAD_CELL_DIAGNOSTIC</code><a class="headerlink" href="#using-load_cell_diagnostic" title="Permanent link">&para;</a></h2>
+<p>When you first connect a load cell its good practice to check for issues by running <code>LOAD_CELL_DIAGNOSTIC</code>. This tool collects 10 seconds of data from the load cell and resport statistics:</p>
+<div class="highlight"><pre><span></span><code>$ LOAD_CELL_DIAGNOSTIC
+// Collecting load cell data for 10 seconds...
+// Samples Collected: 3211
+// Measured samples per second: 332.0
+// Good samples: 3211, Saturated samples: 0, Unique values: 900
+// Sample range: [4.01% to 4.02%]
+// Sample range / sensor capacity: 0.00524%
 </code></pre></div>
 
-<p>This command will calibrate the X-axis by default.</p>
+<p>Things you can check with this data:</p>
 <ul>
-<li>The calibration wizard will prompt you to measure the probe Z offset at several points along the bed.</li>
-<li>By default, the calibration uses 3 points, but you can specify a different number with the option: <code>SAMPLE_COUNT=&lt;value&gt;</code></li>
+<li>The configured sample rate of the sensor should be close to the 'Measured samples per second' value. If it is not you may have a configuration or wiring issue.</li>
+<li>'Saturated samples' should be 0. If you have saturated samples it means the load sell is seeing more force than it can measure.</li>
+<li>'Unique values' should be a large percentage of the 'Samples Collected' value. If 'Unique values' is 1 it is very likely a wiring issue.</li>
+<li>Tap or push on the sensor while <code>LOAD_CELL_DIAGNOSTIC</code> runs. If things are working correctly ths should increase the 'Sample range'.</li>
 </ul>
+<h2 id="calibrating-a-load-cell">Calibrating a Load Cell<a class="headerlink" href="#calibrating-a-load-cell" title="Permanent link">&para;</a></h2>
+<p>Load cells are calibrated using the <code>LOAD_CELL_CALIBRATE</code> command. This is an interactive calibration utility that walks you though a 3 step process:</p>
 <ol>
-<li><strong>Adjust Your Z Offset:</strong> After completing the calibration, be sure to <a href="Probe_Calibrate.html#calibrating-probe-z-offset">adjust your Z offset</a>.</li>
-<li><strong>Perform Bed Leveling Operations:</strong> Use probe-based operations as needed, such as:</li>
+<li>First use the <code>TARE</code> command to establish the zero force value. This is the <code>reference_tare_counts</code> config value.</li>
+<li>Next you apply a known load or force to the load cell and run the <code>CALIBRATE GRAMS=nnn</code> command. From this the <code>counts_per_gram</code> value is calculated. See <a href="#applying-a-known-force-or-load">the next section</a> for some suggestions on how to do this.</li>
+<li>Finally, use the <code>ACCEPT</code> command to save the results.</li>
 </ol>
-<ul>
-<li><a href="G-Codes.html#screws_tilt_adjust">Screws Tilt Adjust</a></li>
-<li><a href="G-Codes.html#z_tilt_adjust">Z Tilt Adjust</a></li>
-</ul>
-<ol>
-<li><strong>Finalize the Setup:</strong></li>
-</ol>
-<ul>
-<li>Home all axes, and perform a <a href="Bed_Mesh.html">Bed Mesh</a> if necessary.</li>
-<li>Run a test print, followed by any <a href="Axis_Twist_Compensation.html#fine-tuning">fine-tuning</a> if needed.</li>
-</ul>
-<h3 id="for-y-axis-calibration">For Y-Axis Calibration<a class="headerlink" href="#for-y-axis-calibration" title="Permanent link">&para;</a></h3>
-<p>The calibration process for the Y-axis is similar to the X-axis. To calibrate the Y-axis, use:</p>
-<div class="highlight"><pre><span></span><code>AXIS_TWIST_COMPENSATION_CALIBRATE AXIS=Y
+<p>You can cancel the calibration process at any time with <code>ABORT</code>.</p>
+<h3 id="applying-a-known-force-or-load">Applying a Known Force or Load<a class="headerlink" href="#applying-a-known-force-or-load" title="Permanent link">&para;</a></h3>
+<p>The <code>CALIBRATE GRAMS=nnn</code> step can be accomplished in a number of ways. If your load cell is under a platform like a bed or filament holder it might be easiest to put a known mass on the platform. E.g. you could use a couple of 1KG filament spools.</p>
+<p>If your load cell is in the printer's toolhead a different approach is easier. Put a digital scale on the printers bed and gently lower the toolhead onto the scale (or raise the bed into the toolhead if your bed moves). You may be able to do this using the <code>FORCE_MOVE</code> command. But more likely you will have to manually moving the z axis with the motors off until the toolhead presses on the scale.</p>
+<p>A good calibration force would ideally be a large percentage of the load cell's rated capacity. E.g. if you have a 5Kg load cell you would ideally calibrate it with a 5kg mass. This might work well with under-bed sensors that have to support a lot of weight. For toolhead probes this may not be a load that your printer bed or toolhead can tolerate without damage. Do try to use at least 1Kg of force, most printers should tolerate this without issue.</p>
+<p>When calibrating make careful note of the values reported:</p>
+<div class="highlight"><pre><span></span><code>$ CALIBRATE GRAMS=555
+// Calibration value: -2.78% (-59803108), Counts/gram: 73039.78739,
+Total capacity: +/- 29.14Kg
 </code></pre></div>
 
-<p>This will guide you through the same measuring process as for the X-axis.</p>
-<blockquote>
-<p><strong>提示：</strong>床温、喷嘴温度和尺寸似乎对校准过程没有影响。</p>
-</blockquote>
-<h2 id="axis_twist_commention">[AXIS_TWIST_COMMENTION]设置和命令<a class="headerlink" href="#axis_twist_commention" title="Permanent link">&para;</a></h2>
-<p>Configuration options for <code>[axis_twist_compensation]</code> can be found in the <a href="Config_Reference.html#axis_twist_compensation">Configuration Reference</a>.</p>
-<p>Commands for <code>[axis_twist_compensation]</code> can be found in the <a href="G-Codes.html#axis_twist_compensation">G-Codes Reference</a></p>
+<p>The <code>Total capacity</code> should be close to the theoretical rating of the load cell based on the sensor's capacity. If it is much larger you could have used a higher gain setting in the sensor or a more sensitive load cell. This isn't as critical for 32bit and 24bit sensors but is much more critical for low bit width sensors.</p>
+<h2 id="reading-force-data">Reading Force Data<a class="headerlink" href="#reading-force-data" title="Permanent link">&para;</a></h2>
+<p>Force data can be read with a GCode command:</p>
+<div class="highlight"><pre><span></span><code>LOAD_CELL_READ
+// 10.6g (1.94%)
+</code></pre></div>
+
+<p>Data is also continuously read and can be consumed from the load_cell printer object in a macro:</p>
+<div class="highlight"><pre><span></span><code>{% set grams = printer.load_cell.force_g %}
+</code></pre></div>
+
+<p>This provides an average force over the last 1 second, similar to how temperature sensors work.</p>
+<h2 id="taring-a-load-cell">Taring a Load Cell<a class="headerlink" href="#taring-a-load-cell" title="Permanent link">&para;</a></h2>
+<p>Taring, sometimes called zeroing, sets the current weight reported by the load_cell to 0. This is useful for measuring relative to a known weight. e.g. when measuring a filament spool, using <code>LOAD_CELL_TARE</code> sets the weight to 0. Then as filament is printed the load_cell will report the weight of the filament used.</p>
+<div class="highlight"><pre><span></span><code>LOAD_CELL_TARE
+// Load cell tare value: 5.32% (445903)
+</code></pre></div>
+
+<p>The current tare value is reported in the printers status and can be read in a macro:</p>
+<div class="highlight"><pre><span></span><code>{% set tare_counts = printer.load_cell.tare_counts %}
+</code></pre></div>
 
               
             </article>
@@ -1513,41 +1471,6 @@ bias</a>. It may result in probe operations such as <a href="Bed_Mesh.html">Bed 
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="页脚">
-      
-        
-        <a href="Endstop_Phase.html" class="md-footer__link md-footer__link--prev" aria-label="上一页: 限位相位" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              限位相位
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="Resonance_Compensation.html" class="md-footer__link md-footer__link--next" aria-label="下一页: 共振补偿" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              共振补偿
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
